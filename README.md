@@ -1,21 +1,8 @@
 # 🎬 DroidconKe Movie App
 
 > 📖 **NEW: Comprehensive Architecture Guides Available!**
->
-> **Start Here:** [📚 Architecture Documentation Index](./ARCHITECTURE_INDEX.md) - Choose your
-> learning path
->
-> **Or jump directly to:**
-> - 📚 [Architecture Breakdown for Beginners](./ARCHITECTURE_BREAKDOWN.md) - Deep dive (1800+ lines)
-> - 💻 [Code Walkthrough - Line by Line](./ARCHITECTURE_CODE_WALKTHROUGH.md) - Perfect for
-    presentations!
-> - 🔧 [StateManager Deep Dive](./STATEMANAGER_DEEP_DIVE.md) - The MVI engine explained
-> - 🔍 [Search Reducers Implementation Guide](./SEARCH_REDUCERS_GUIDE.md) - Step-by-step MVI workshop
-    guide
-> - 🚀 [Quick Reference Card](./ARCHITECTURE_QUICK_REFERENCE.md) - TL;DR version
-> - 📊 [Visual Guide with Diagrams](./ARCHITECTURE_VISUAL_GUIDE.md) - Flowcharts & diagrams
 
-A movie browsing app showcasing different Android architecture patterns (MVVM, MVI2, Workflow) using
+A movie browsing app showcasing different Android architecture patterns (MVVM, MVI, Workflow) using
 The Movie Database (TMDB) API. Built with Jetpack Compose, Material3, and Clean Architecture
 principles following the **Now in Android** pattern.
 
