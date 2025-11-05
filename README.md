@@ -1,0 +1,1105 @@
+# 🎬 DroidconKe Movie App
+
+> 📖 **NEW: Comprehensive Architecture Guides Available!**
+>
+> **Start Here:** [📚 Architecture Documentation Index](./ARCHITECTURE_INDEX.md) - Choose your
+> learning path
+>
+> **Or jump directly to:**
+> - 📚 [Architecture Breakdown for Beginners](./ARCHITECTURE_BREAKDOWN.md) - Deep dive (1800+ lines)
+> - 💻 [Code Walkthrough - Line by Line](./ARCHITECTURE_CODE_WALKTHROUGH.md) - Perfect for
+    presentations!
+> - 🔧 [StateManager Deep Dive](./STATEMANAGER_DEEP_DIVE.md) - The MVI engine explained
+> - 🔍 [Search Reducers Implementation Guide](./SEARCH_REDUCERS_GUIDE.md) - Step-by-step MVI workshop
+    guide
+> - 🚀 [Quick Reference Card](./ARCHITECTURE_QUICK_REFERENCE.md) - TL;DR version
+> - 📊 [Visual Guide with Diagrams](./ARCHITECTURE_VISUAL_GUIDE.md) - Flowcharts & diagrams
+
+A movie browsing app showcasing different Android architecture patterns (MVVM, MVI2, Workflow) using
+The Movie Database (TMDB) API. Built with Jetpack Compose, Material3, and Clean Architecture
+principles following the **Now in Android** pattern.
+
+## 📱 Features
+
+- **Browse Movies**: Discover popular, top rated, upcoming, and now playing movies
+- **Search**: Find any movie with real-time search
+- **Favorites**: Save and manage your favorite movies
+- **Theme Support**: Beautiful light/dark themes with Material3
+- **Multiple Architectures**: Compare MVVM, MVI, and Workflow implementations
+
+## 🚀 Complete Setup Guide
+
+> **⏱️ Estimated Time**: 10-15 minutes (including API key registration)
+
+### System Requirements
+
+Before you begin, ensure you have:
+
+| Requirement        | Minimum Version      | Recommended           | Download Link                                                   |
+|--------------------|----------------------|-----------------------|-----------------------------------------------------------------|
+| **Android Studio** | Hedgehog (2023.1.1)  | Latest Stable         | [Download](https://developer.android.com/studio)                |
+| **JDK**            | 11                   | 17                    | [Download](https://www.oracle.com/java/technologies/downloads/) |
+| **Gradle**         | 8.0                  | Included with project | -                                                               |
+| **Android SDK**    | API 24 (Android 7.0) | API 34+               | Via Android Studio                                              |
+| **Git**            | Any recent version   | Latest                | [Download](https://git-scm.com/)                                |
+
+**Operating Systems Supported:**
+
+- ✅ macOS (Intel & Apple Silicon)
+- ✅ Windows 10/11
+- ✅ Linux (Ubuntu 20.04+)
+
+### Step 1: Get TMDB API Key
+
+The app requires a free API key from The Movie Database (TMDB).
+
+#### 1.1 Create TMDB Account
+
+1. Go to [themoviedb.org](https://www.themoviedb.org/)
+2. Click **"Join TMDB"** in the top right
+3. Fill in your details:
+   - Username
+   - Password
+   - Email address
+4. Verify your email address (check your inbox)
+
+#### 1.2 Request API Key
+
+1. Log in to your TMDB account
+2. Navigate to your account settings:
+   - Click your **profile icon** (top right)
+   - Select **"Settings"**
+3. Go to the **"API"** section in the left sidebar
+4. Click **"Request an API Key"**
+5. Select **"Developer"** (for non-commercial use)
+6. Fill in the application form:
+   - **Type of Use**: Educational/Learning
+   - **Application Name**: DroidconKe Movie App (or your choice)
+   - **Application URL**: Can use `http://localhost` for learning
+   - **Application Summary**: Learning Android architecture patterns
+7. Accept the terms of use
+8. Click **"Submit"**
+
+#### 1.3 Copy Your API Key
+
+1. Once approved (instant), you'll see your API Key on the API page
+2. **Copy the "API Key (v3 auth)"** - it looks like:
+   ```
+   a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6
+   ```
+3. ⚠️ **Keep this key private** - don't commit it to Git!
+
+### Step 2: Clone the Repository
+
+Choose your preferred method:
+
+#### Option A: Using Git Command Line
+
+```bash
+# Navigate to your projects directory
+cd ~/Projects  # or your preferred location
+
+# Clone the repository
+git clone https://github.com/your-username/DroidconKeMovieApp.git
+
+# Navigate into the project
+cd DroidconKeMovieApp
+```
+
+#### Option B: Using GitHub Desktop
+
+1. Open GitHub Desktop
+2. Click **File → Clone Repository**
+3. Enter the repository URL: `https://github.com/your-username/DroidconKeMovieApp.git`
+4. Choose your local path
+5. Click **Clone**
+
+#### Option C: Download ZIP
+
+1. Go to the repository on GitHub
+2. Click the green **"Code"** button
+3. Select **"Download ZIP"**
+4. Extract the ZIP file to your projects directory
+
+### Step 3: Configure API Key
+
+Now let's securely configure your TMDB API key.
+
+#### 3.1 Locate local.properties File
+
+The `local.properties` file is where we store local configuration (it's already in `.gitignore`).
+
+**On macOS/Linux:**
+
+```bash
+cd DroidconKeMovieApp
+ls -la local.properties  # Check if it exists
+```
+
+**On Windows:**
+
+```cmd
+cd DroidconKeMovieApp
+dir local.properties
+```
+
+#### 3.2 Add Your API Key
+
+**Option A: Using a Text Editor**
+
+1. Open the project folder in your file explorer
+2. Look for `local.properties` in the root directory
+3. If it doesn't exist, create a new file named `local.properties`
+4. Open it with any text editor (Notepad, VS Code, etc.)
+5. Add your API key:
+
+```properties
+## This file is automatically generated by Android Studio.
+## Do not modify this file -- YOUR CHANGES WILL BE ERASED!
+##
+# Location of the SDK. This is only used by Gradle.
+sdk.dir=/Users/YourUsername/Library/Android/sdk
+
+# TMDB API Configuration
+TMDB_API_KEY=your_actual_api_key_here
+```
+
+6. Replace `your_actual_api_key_here` with your actual TMDB API key
+7. Save the file
+
+**Option B: Using Command Line**
+
+**On macOS/Linux:**
+
+```bash
+# Navigate to project root
+cd DroidconKeMovieApp
+
+# Add API key (replace YOUR_KEY with your actual key)
+echo "TMDB_API_KEY=YOUR_KEY" >> local.properties
+```
+
+**On Windows (PowerShell):**
+
+```powershell
+# Navigate to project root
+cd DroidconKeMovieApp
+
+# Add API key (replace YOUR_KEY with your actual key)
+Add-Content -Path local.properties -Value "TMDB_API_KEY=YOUR_KEY"
+```
+
+#### 3.3 Verify Configuration
+
+Your `local.properties` should look like this:
+
+```properties
+sdk.dir=/path/to/your/android/sdk
+TMDB_API_KEY=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6
+```
+
+✅ **Security Check:**
+
+- ✅ API key is in `local.properties`
+- ✅ `local.properties` is in `.gitignore`
+- ❌ Never add API key to version control
+- ❌ Never hardcode API key in source files
+
+### Step 4: Open in Android Studio
+
+#### 4.1 Launch Android Studio
+
+1. Open Android Studio
+2. If you see the "Welcome Screen":
+   - Click **"Open"**
+3. If you have another project open:
+   - Click **File → Open**
+
+#### 4.2 Select Project
+
+1. Navigate to where you cloned/extracted the project
+2. Select the **DroidconKeMovieApp** folder (the root folder, not a subfolder)
+3. Click **"Open"**
+
+#### 4.3 Initial Sync
+
+Android Studio will automatically:
+
+- ✅ Detect the Gradle project
+- ✅ Start downloading dependencies (may take 5-10 minutes first time)
+- ✅ Index the project
+- ✅ Configure the Kotlin plugin
+
+**What you'll see:**
+
+- Bottom panel: "Gradle sync in progress..."
+- Status bar: Download progress for dependencies
+- Eventually: "Gradle sync finished" ✅
+
+#### 4.4 Potential Issues & Fixes
+
+<details>
+<summary><b>🔧 Click to expand if you encounter issues</b></summary>
+
+**Issue 1: "Gradle sync failed: SDK location not found"**
+
+**Fix:**
+
+```properties
+# Add to local.properties
+sdk.dir=/Users/YourUsername/Library/Android/sdk  # macOS
+sdk.dir=C\:\\Users\\YourUsername\\AppData\\Local\\Android\\Sdk  # Windows
+sdk.dir=/home/username/Android/Sdk  # Linux
+```
+
+**Issue 2: "Unsupported Java version"**
+
+**Fix:**
+
+1. Go to **File → Project Structure → SDK Location**
+2. Set **Gradle JDK** to JDK 17
+3. Click **Apply** → **OK**
+4. Sync again
+
+**Issue 3: "Plugin [id: 'com.android.application'] was not found"**
+
+**Fix:**
+
+```bash
+./gradlew clean
+./gradlew --refresh-dependencies
+```
+
+**Issue 4: Slow sync on first run**
+
+**Normal behavior** - Gradle is downloading:
+
+- Kotlin compiler (150MB+)
+- Android libraries (200MB+)
+- Project dependencies (100MB+)
+
+This only happens once. Grab a coffee ☕
+
+</details>
+
+### Step 5: Build & Run
+
+#### 5.1 Choose a Device
+
+You have two options:
+
+**Option A: Physical Device (Recommended for best performance)**
+
+1. Enable **Developer Options** on your Android device:
+   - Go to **Settings → About Phone**
+   - Tap **Build Number** 7 times
+   - Go back to **Settings → Developer Options**
+   - Enable **USB Debugging**
+2. Connect your device via USB
+3. Accept the "Allow USB Debugging" prompt on your device
+4. Your device should appear in the device dropdown in Android Studio
+
+**Option B: Android Emulator**
+
+1. Click **Device Manager** icon (phone icon in toolbar)
+2. Click **"Create Device"**
+3. Select a device definition:
+   - Recommended: **Pixel 5** or **Pixel 6**
+4. Select a system image:
+   - Recommended: **API 34 (Android 14)** with Google APIs
+   - Click **"Download"** if not already installed
+5. Click **"Next"** → **"Finish"**
+6. Your virtual device should now appear in the device dropdown
+
+#### 5.2 Build the Project
+
+```bash
+# Command line option
+./gradlew assembleDebug
+```
+
+**Or** in Android Studio:
+
+- Click **Build → Make Project** (⌘⌥F9 / Ctrl+F9)
+
+Expected output:
+
+```
+BUILD SUCCESSFUL in 2m 30s
+```
+
+#### 5.3 Run the App
+
+**Option A: Using Android Studio**
+
+1. Select your device from the device dropdown
+2. Click the **Run** button (▶️ green play icon)
+3. Or press **⇧F10** (macOS) / **Shift+F10** (Windows/Linux)
+
+**Option B: Using Gradle**
+
+```bash
+# Install on connected device
+./gradlew installDebug
+
+# Launch the app (adb required)
+adb shell am start -n com.gyg.codelab.movies/.MainActivity
+```
+
+#### 5.4 First Launch
+
+When the app launches, you should see:
+
+1. **Home Screen** with movie categories:
+   - Popular Movies
+   - Top Rated
+   - Upcoming
+   - Now Playing
+2. **Bottom Navigation** with three tabs:
+   - Home 🏠
+   - Search 🔍
+   - Favorites ❤️
+
+### Verification
+
+Let's verify everything works correctly:
+
+#### Checklist
+
+- App launches successfully without crashes
+- Movies load in all four categories (Popular, Top Rated, Upcoming, Now Playing)
+- Movie posters display correctly (images load)
+- Search tab allows typing and shows results
+- Favorites tab allows adding/removing favorites
+- Bottom navigation switches between screens smoothly
+- No error messages in the Logcat
+
+#### Test Each Feature
+
+**1. Browse Movies (Home Tab)**
+
+- Scroll through Popular movies
+- Tap a movie card (future: opens details)
+- Check Top Rated section loads
+- Verify posters show correctly
+
+**2. Search Movies (Search Tab)**
+
+- Type "Avatar" in search box
+- Results appear as you type
+- Posters load for search results
+- Clear search resets the results
+
+**3. Manage Favorites (All Tabs)**
+
+- Tap heart icon on a movie (turns filled/red)
+- Navigate to Favorites tab
+- Movie appears in favorites list
+- Tap heart again to remove
+- Favorites list updates automatically
+
+**4. Theme Switching**
+
+- Toggle device dark mode
+- App theme updates automatically
+- Colors remain readable in both modes
+
+#### Check Logcat
+
+Open **Logcat** in Android Studio and verify:
+
+**Good Signs:**
+
+```
+D/MoviesRepository: Fetching popular movies
+D/MoviesRepository: Received 20 movies
+D/HomeViewModel: Movies loaded successfully
+```
+
+**Bad Signs (and fixes):**
+
+```
+E/MoviesRepository: API key not found
+→ Fix: Check local.properties has TMDB_API_KEY
+
+E/Retrofit: HTTP 401 Unauthorized
+→ Fix: Your API key may be invalid, regenerate on TMDB
+
+E/Network: Unable to resolve host
+→ Fix: Check internet connection
+```
+
+## 📐 Architecture
+
+This app follows **Clean Architecture** with the **Now in Android** pattern:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                     App Layer                           │
+│              Navigation & Composition                   │
+└─────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────┐
+│                  Feature Layer                          │
+│        Routes (Entry points per feature)                │
+└─────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────┐
+│              Presentation Layer                         │
+│    ViewModels/Presenters (Business Logic)               │
+└─────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────┐
+│                  Domain Layer                           │
+│       Repository Interfaces (Contracts)                 │
+└─────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────┐
+│                   Data Layer                            │
+│    Repository Implementations (Data Access)             │
+└─────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────┐
+│                    UI Layer                             │
+│         Pure Components (Display Only)                  │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Module Structure
+
+```
+DroidconKeMovieApp/
+├── app/                     # Main application module (Navigation & DI)
+├── domain/                  # Business models & repository interfaces
+├── data/                    # API service & repository implementations
+├── ui-common/              # Shared UI components & theme
+├── feature-mvvm/           # MVVM implementation
+├── feature-mvi/            # MVI implementation (Reducer pattern)
+├── feature-workflow/       # Square Workflow implementation
+└── gradle/                 # Build configuration
+```
+
+## 🏗️ Key Components
+
+### Repositories
+
+| Repository | Purpose | Location |
+|------------|---------|----------|
+| `MoviesRepository` | Fetch movies by category | `domain/repository/` |
+| `SearchRepository` | Search for movies | `domain/repository/` |
+| `FavoritesRepository` | Manage favorite movies | `domain/repository/` |
+
+### ViewModels (MVVM & Workflow)
+
+| ViewModel | Purpose | Dependencies |
+|-----------|---------|--------------|
+| `HomeViewModel` | Home screen with categories & favorites | `MoviesRepository`, `FavoritesRepository` |
+| `SearchViewModel` | Search functionality | `SearchRepository` |
+| `FavoritesViewModel` | Favorites management | `FavoritesRepository` |
+
+### Navigation
+
+- **Top-Level Destinations**: Home, Search, Favorites
+- **Bottom Navigation**: Material3 bottom nav bar with icons
+- **Deep Linking**: Support for movie details navigation
+- **State Preservation**: Maintains state when switching tabs
+
+## 🎨 Theme System
+
+Comprehensive Material3 theming with light/dark mode support:
+
+### Available Theme Colors
+
+**Dark Theme:**
+
+- `DarkBackground`, `DarkSurface`, `DarkCardBackground`
+- `TextPrimary`, `TextSecondary`, `TextTertiary`
+- `AccentGold`
+
+**Light Theme:**
+
+- `LightBackground`, `LightSurface`, `LightCardBackground`
+- `TextPrimaryLight`, `TextSecondaryLight`, `TextTertiaryLight`
+- `AccentGoldLight`
+
+### Using Theme Colors
+
+```kotlin
+// For backgrounds
+MaterialTheme.colorScheme.background
+MaterialTheme.colorScheme.surface
+
+// For text
+MaterialTheme.colorScheme.onBackground
+MaterialTheme.colorScheme.onSurface
+
+// For conditional theming
+val isDarkTheme = isSystemInDarkTheme()
+val color = if (isDarkTheme) DarkColor else LightColor
+```
+
+## 🧪 Testing
+
+### Running Tests
+
+```bash
+# Run all tests
+./gradlew test
+
+# Run specific module tests
+./gradlew :app:test
+./gradlew :feature-mvvm:test
+```
+
+### Testing Patterns
+
+**ViewModels:**
+
+```kotlin
+@Test
+fun `loadMovies updates state on success`() = runTest {
+    val mockRepository = mockk<MoviesRepository>()
+    coEvery { mockRepository.getPopularMovies() } returns Result.success(testMovies)
+    val viewModel = HomeViewModel(mockRepository, mockk())
+    
+    viewModel.loadMovies(MovieCategory.POPULAR)
+    
+    assertEquals(testMovies, viewModel.popularMovies.value)
+}
+```
+
+**Repositories:**
+
+```kotlin
+@Test
+fun `repository maps DTO to domain model correctly`() = runTest {
+    val mockApi = mockk<MoviesApiService>()
+    coEvery { mockApi.getPopularMovies(any()) } returns testResponse
+    val repository = MoviesRepositoryImpl(mockApi, "test-key")
+    
+    val result = repository.getPopularMovies()
+    
+    assertTrue(result.isSuccess)
+}
+```
+
+## 📚 Architecture Patterns
+
+### MVVM (Model-View-ViewModel) ✅
+
+**Location**: `feature-mvvm/`
+
+- ViewModel with StateFlow for reactive state management
+- One-way data flow from ViewModel to View
+- Repository pattern for data access
+- Clean separation of concerns
+
+**Key Files:**
+
+- `MoviesViewModel.kt` - Legacy full-screen ViewModel
+- `HomeViewModel.kt` - Home screen business logic
+- `SearchViewModel.kt` - Search functionality
+- `FavoritesViewModel.kt` - Favorites management
+
+### MVI (Model-View-Intent) ✅
+
+**Location**: `feature-mvi/`
+
+- State, Event, Effect separation
+- Reducer pattern for state transformations
+- Unidirectional data flow
+- Predictable state management
+
+**Key Concepts:**
+
+- **State**: Single source of truth
+- **Events**: User actions or system events
+- **Effects**: Side effects (toasts, navigation, etc.)
+- **Reducers**: Pure functions that transform state
+
+### Workflow ✅
+
+**Location**: `feature-workflow/`
+
+- Square's Workflow library
+- State machine approach
+- Highly testable business logic
+- Explicit state transitions
+
+## 🔍 Common Patterns & Best Practices
+
+### Adding a New Feature
+
+1. **Create Repository Interface** (Domain)
+   ```kotlin
+   interface YourRepository {
+       suspend fun yourOperation(param: String): Result<YourData>
+       fun observeData(): Flow<List<YourData>>
+   }
+   ```
+
+2. **Implement Repository** (Data)
+   ```kotlin
+   class YourRepositoryImpl(
+       private val apiService: YourApiService,
+       private val apiKey: String
+   ) : YourRepository {
+       override suspend fun yourOperation(param: String): Result<YourData> {
+           return safeApiCall { apiService.fetchData(param, apiKey) }
+       }
+   }
+   ```
+
+3. **Create ViewModel** (Presentation)
+   ```kotlin
+   class YourViewModel(
+       private val yourRepository: YourRepository
+   ) : ViewModel() {
+       private val _state = MutableStateFlow<YourState>(YourState.Initial)
+       val state: StateFlow<YourState> = _state.asStateFlow()
+       
+       fun loadData(param: String) {
+           viewModelScope.launch {
+               _state.value = YourState.Loading
+               yourRepository.yourOperation(param)
+                   .onSuccess { data -> _state.value = YourState.Success(data) }
+                   .onFailure { error -> _state.value = YourState.Error(error.message) }
+           }
+       }
+   }
+   ```
+
+4. **Create Route** (Feature)
+   ```kotlin
+   @Composable
+   fun YourRoute(
+       viewModel: YourViewModel,
+       onNavigateBack: () -> Unit = {},
+   ) {
+       val state by viewModel.state.collectAsStateWithLifecycle()
+       YourScreen(state = state, onAction = viewModel::handleAction)
+   }
+   ```
+
+5. **Add to Navigation** (App)
+   ```kotlin
+   composable(route = "your_feature") {
+       val viewModel: YourViewModel = koinViewModel()
+       YourRoute(viewModel = viewModel, onNavigateBack = { navController.popBackStack() })
+   }
+   ```
+
+### DO ✅
+
+- Keep ViewModels focused on business logic only
+- Put navigation in app layer (MoviesNavHost)
+- Use `Result<T>` for operations that can fail
+- Use `Flow<T>` for streams of data
+- Handle errors at repository level
+- Make all UI components theme-aware
+- Test each layer independently
+- Remove unused code immediately (YAGNI)
+- Use `koinViewModel()` at navigation level
+- Collect state with `collectAsStateWithLifecycle()`
+
+### DON'T ❌
+
+- Put navigation logic in ViewModels
+- Put business logic in UI components
+- Access repositories directly from Routes
+- Mix concerns (e.g., search in movies repository)
+- Expose mutable state from ViewModels
+- Hardcode theme colors (use theme system)
+- Leave unused code "just in case"
+- Create coordinator ViewModels (navigation is in app layer)
+
+## 🛠️ Tech Stack
+
+### Core
+
+- **Kotlin** 2.0.21
+- **Jetpack Compose** - Modern UI toolkit
+- **Material3** - Latest Material Design
+- **Coroutines** 1.7.3 - Asynchronous programming
+- **Flow** - Reactive streams
+
+### Architecture
+
+- **Koin** 3.5.0 - Dependency injection
+- **ViewModel** - State management
+- **Navigation Compose** - Navigation
+- **Lifecycle** - Lifecycle-aware components
+
+### Networking
+
+- **Retrofit** 2.9.0 - HTTP client
+- **OkHttp** 4.12.0 - HTTP engine
+- **Gson** - JSON parsing
+
+### UI
+
+- **Coil** 2.5.0 - Image loading
+- **Compose Foundation** - UI primitives
+- **Material Icons Extended** - Icon library
+
+### Workflow (Optional)
+
+- **Square Workflow** 1.11.0 - State machine library
+
+### Testing
+
+- **JUnit** 4.13.2
+- **MockK** 1.13.8
+- **Coroutines Test** 1.7.3
+- **Arch Core Testing** 2.2.0
+
+## 📊 Project Statistics
+
+- **Modules**: 7
+- **Lines of Code**: ~3000+
+- **Architectures**: 3 (MVVM, MVI, Workflow)
+- **Repositories**: 3 (Movies, Search, Favorites)
+- **ViewModels**: 3 (Home, Search, Favorites)
+- **Shared UI Components**: 10+
+
+## 🐛 Troubleshooting
+
+### Common Issues & Solutions
+
+<details>
+<summary><b>❌ "API Key not found" error</b></summary>
+
+**Symptoms:**
+
+- App shows "Failed to load movies"
+- Logcat shows: `API key not found`
+
+**Solutions:**
+
+1. Verify `local.properties` exists in project root
+2. Check the file contains: `TMDB_API_KEY=your_key`
+3. Ensure no extra spaces around the key
+4. Restart Android Studio after adding the key
+5. Clean and rebuild:
+   ```bash
+   ./gradlew clean
+   ./gradlew assembleDebug
+   ```
+
+</summary>
+
+</details>
+
+<details>
+<summary><b>❌ HTTP 401 Unauthorized error</b></summary>
+
+**Symptoms:**
+
+- Movies don't load
+- Logcat shows: `HTTP 401 Unauthorized`
+
+**Solutions:**
+
+1. Your API key is invalid or expired
+2. Generate a new key from TMDB:
+   - Go to [themoviedb.org](https://www.themoviedb.org/)
+   - Settings → API → Regenerate
+3. Update `local.properties` with new key
+4. Clean and rebuild project
+
+</summary>
+
+</details>
+
+<details>
+<summary><b>❌ Gradle sync failed</b></summary>
+
+**Symptoms:**
+
+- Red errors in Android Studio
+- "Gradle sync failed" notification
+
+**Solutions:**
+
+1. Check internet connection
+2. Invalidate caches:
+   - **File → Invalidate Caches → Invalidate and Restart**
+3. Refresh dependencies:
+   ```bash
+   ./gradlew clean
+   ./gradlew --refresh-dependencies
+   ```
+4. Update Gradle wrapper:
+   ```bash
+   ./gradlew wrapper --gradle-version=8.2
+   ```
+
+</summary>
+
+</details>
+
+<details>
+<summary><b>❌ "No movies shown" but no errors</b></summary>
+
+**Symptoms:**
+
+- App loads but shows empty screens
+- No error messages in Logcat
+
+**Solutions:**
+
+1. **Check internet connection** on the device/emulator
+2. **Verify API key** is correct in `local.properties`
+3. **Check Logcat** for network errors:
+   - Filter by: `tag:Movies`
+4. **Test API key** manually:
+   ```bash
+   curl "https://api.themoviedb.org/3/movie/popular?api_key=YOUR_KEY"
+   ```
+5. **Clear app data**:
+   - Settings → Apps → DroidconKe Movie App → Clear Data
+
+</summary>
+
+</details>
+
+<details>
+<summary><b>❌ Build errors about missing dependencies</b></summary>
+
+**Symptoms:**
+
+- Cannot resolve symbol errors
+- Missing library errors
+
+**Solutions:**
+
+1. Sync project:
+   - **File → Sync Project with Gradle Files**
+2. Refresh dependencies:
+   ```bash
+   ./gradlew build --refresh-dependencies
+   ```
+3. Check `gradle/libs.versions.toml` for correct versions
+4. Clear Gradle cache:
+   ```bash
+   rm -rf ~/.gradle/caches/
+   ./gradlew clean build
+   ```
+
+</summary>
+
+</details>
+
+<details>
+<summary><b>❌ Emulator is very slow</b></summary>
+
+**Symptoms:**
+
+- Emulator takes minutes to open
+- App is laggy on emulator
+
+**Solutions:**
+
+1. **Use hardware acceleration**:
+   - macOS: Ensure Intel HAXM or Hypervisor Framework is enabled
+   - Windows: Enable Intel VT-x or AMD-V in BIOS
+   - Linux: Install KVM
+2. **Reduce emulator resources**:
+   - Edit AVD → Advanced Settings
+   - Reduce RAM to 2048 MB
+   - Set Graphics to "Hardware"
+3. **Use a physical device** instead (recommended)
+4. **Update emulator**:
+   - Tools → SDK Manager → SDK Tools → Android Emulator (update)
+
+</summary>
+
+</details>
+
+<details>
+<summary><b>❌ "SDK location not found"</b></summary>
+
+**Symptoms:**
+
+- Gradle sync fails immediately
+- Cannot find Android SDK
+
+**Solutions:**
+Add to `local.properties`:
+
+**macOS:**
+
+```properties
+sdk.dir=/Users/YourUsername/Library/Android/sdk
+```
+
+**Windows:**
+
+```properties
+sdk.dir=C\:\\Users\\YourUsername\\AppData\\Local\\Android\\Sdk
+```
+
+**Linux:**
+
+```properties
+sdk.dir=/home/username/Android/Sdk
+```
+
+</summary>
+
+</details>
+
+### Still Having Issues?
+
+1. **Check the logs**: Share relevant Logcat output
+2. **Verify setup**: Review each step in the setup guide
+3. **Clean slate**: Delete project and clone again
+4. **Ask for help**: Open an issue with:
+   - Android Studio version
+   - Operating system
+   - Error message
+   - Steps to reproduce
+
+## 🎓 Learning Resources
+
+### Official Documentation
+
+- [Now in Android](https://github.com/android/nowinandroid/) - Google's official architecture sample
+- [Android Architecture Guide](https://developer.android.com/topic/architecture) - Official
+  architecture principles
+- [Material Design 3](https://m3.material.io/) - Material Design guidelines
+- [Jetpack Compose](https://developer.android.com/jetpack/compose) - Modern UI toolkit
+- [Kotlin Flows](https://kotlinlang.org/docs/flow.html) - Reactive streams in Kotlin
+
+### Architecture Patterns
+
+- [MVVM Pattern](https://developer.android.com/topic/architecture#recommended-app-arch) -
+  Model-View-ViewModel
+- [MVI Pattern](https://hannesdorfmann.com/android/model-view-intent/) - Model-View-Intent
+- [Square Workflow](https://square.github.io/workflow/) - State machine library
+
+### Video Tutorials
+
+- [DroidconKE Sessions](https://www.droidcon.com/) - Conference talks on Android
+- [Android Developers YouTube](https://www.youtube.com/@AndroidDevelopers) - Official Android
+  channel
+- [Philipp Lackner](https://www.youtube.com/@PhilippLackner) - Android tutorials
+
+## 📝 License
+
+This project is for educational purposes as part of the DroidconKE codelab.
+
+```
+MIT License
+
+Copyright (c) 2024 DroidconKE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## 🙏 Acknowledgments
+
+- **TMDB** - For providing the comprehensive movie database API
+- **Now in Android** - For architecture inspiration and best practices
+- **DroidconKE** - For the learning opportunity and community support
+- **Android Community** - For excellent documentation, samples, and support
+- **Square** - For the Workflow library
+- **Contributors** - Everyone who has contributed to this project
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+### How to Contribute
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Code Style
+
+- Follow [Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
+- Use meaningful variable and function names
+- Add comments for complex logic
+- Write tests for new features
+
+## 📧 Contact & Support
+
+- **Issues**: [GitHub Issues](https://github.com/your-username/DroidconKeMovieApp/issues)
+- **Discussions
+  **: [GitHub Discussions](https://github.com/your-username/DroidconKeMovieApp/discussions)
+- **Email**: droidconke@example.com
+- **Twitter**: [@DroidConKE](https://twitter.com/droidconke)
+
+## ⭐ Star History
+
+If you find this project helpful, please consider giving it a star! ⭐
+
+---
+
+## 📚 Architecture Patterns
+
+### MVVM (Model-View-ViewModel)
+
+**Location**: `feature-mvvm/`
+
+- ViewModel with StateFlow for reactive state management
+- One-way data flow from ViewModel to View
+- Repository pattern for data access
+- Clean separation of concerns
+
+**Key Files:**
+
+- `MoviesViewModel.kt` - Legacy full-screen ViewModel
+- `HomeViewModel.kt` - Home screen business logic
+- `SearchViewModel.kt` - Search functionality
+- `FavoritesViewModel.kt` - Favorites management
+
+### MVI (Model-View-Intent)
+
+**Location**: `feature-mvi/`
+
+- State, Event, Effect separation
+- Reducer pattern for state transformations
+- Unidirectional data flow
+- Predictable state management
+
+**Key Concepts:**
+
+- **State**: Single source of truth
+- **Events**: User actions or system events
+- **Effects**: Side effects (toasts, navigation, etc.)
+- **Reducers**: Pure functions that transform state
+
+### Workflow
+
+**Location**: `feature-workflow/`
+
+- Square's Workflow library
+- State machine approach
+- Highly testable business logic
+- Explicit state transitions
+
+---
+
+**Built with ❤️ for DroidconKE**
+
+*Happy Coding! 🚀*
