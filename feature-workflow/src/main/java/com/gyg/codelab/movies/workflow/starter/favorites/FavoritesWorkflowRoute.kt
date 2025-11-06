@@ -2,9 +2,7 @@ package com.gyg.codelab.movies.workflow.starter.favorites
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.ui.screens.FavoritesScreen
 
 /**
  * TODO: Implement FavoritesWorkflowRoute for the Favorites feature using Workflow
@@ -41,16 +39,16 @@ import com.gyg.codelab.movies.ui.screens.FavoritesScreen
  */
 @Composable
 fun FavoritesWorkflowRoute(
-  viewModel: FavoritesWorkflowViewModel,
-  onMovieClick: (Movie) -> Unit,
+    viewModel: FavoritesWorkflowViewModel,
+    onMovieClick: (Movie) -> Unit,
 ) {
-  // TODO: Once FavoritesWorkflow and FavoritesWorkflowViewModel are implemented, uncomment below:
+    // TODO: Once FavoritesWorkflow and FavoritesWorkflowViewModel are implemented, uncomment below:
 
-  // val rendering by viewModel.favoritesRendering.collectAsStateWithLifecycle()
+    // val rendering by viewModel.favoritesRendering.collectAsStateWithLifecycle()
 
-  // FavoritesScreen(
-  //   favoriteMovies = rendering.favorites,
-  //   onMovieClick = onMovieClick,
-  //   onToggleFavorite = rendering.onToggleFavourite
-  // )
+    // FavoritesScreen(
+    //   favoriteMovies = rendering.favorites,
+    //   onMovieClick = onMovieClick,
+    //   onToggleFavorite = rendering.onToggleFavourite
+    // )
 }

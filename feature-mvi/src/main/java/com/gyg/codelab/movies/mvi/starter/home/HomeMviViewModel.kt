@@ -2,7 +2,7 @@ package com.gyg.codelab.movies.mvi.starter.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gyg.codelab.movies.mvi2.state_manager.StateManager
+import com.gyg.codelab.movies.mvi.state_manager.StateManager
 import kotlinx.coroutines.flow.*
 
 /**
@@ -19,50 +19,49 @@ import kotlinx.coroutines.flow.*
  * triggers re-emission of movies with updated favorite status.
  */
 class HomeMviViewModel(
-  private val stateManager: StateManager<HomeState, HomeEvent>,
-  private val transformer: HomeTransformer,
+    private val stateManager: StateManager<HomeState, HomeEvent>,
+    private val transformer: HomeTransformer,
 ) : ViewModel() {
 
-  // Domain state from StateManager
-  private val domainState: StateFlow<HomeState> = stateManager.getState()
+    // Domain state from StateManager
+    private val domainState: StateFlow<HomeState> = stateManager.getState()
 
-  /**
-   * UI state transformed from domain state
-   * Contains movieSections ready for display in LazyMoviesScreen
-   */
-  val uiState: StateFlow<HomeUIState> = domainState
-    .map { state -> transformer.transform(state) }
-    .onStart {
-      // Start processing events
-      stateManager.startProcessingEvents()
+    /**
+     * UI state transformed from domain state
+     * Contains movieSections ready for display in LazyMoviesScreen
+     */
+    val uiState: StateFlow<HomeUIState> = domainState
+        .map { state -> transformer.transform(state) }
+        .onStart {
+            // Start processing events
+            stateManager.startProcessingEvents()
 
-      // Load initial data (favorites are now loaded reactively within this)
-      handleEvent(HomeEvent.LoadAllMovies)
+            // Load initial data (favorites are now loaded reactively within this)
+            handleEvent(HomeEvent.LoadAllMovies)
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = HomeUIState.initial(),
+        )
+
+    /**
+     * Handle incoming events
+     * Events are processed by reducers via the StateManager
+     */
+    fun handleEvent(event: HomeEvent) {
+        stateManager.publishEvent(event)
     }
-    .stateIn(
-      scope = viewModelScope,
-      started = SharingStarted.WhileSubscribed(5000),
-      initialValue = HomeUIState.initial()
-    )
 
+    /**
+     * Toggle favorite status of a movie
+     * Dispatches event - reducer handles the repository update
+     * State will be updated reactively via combined flows in load reducers
+     */
+    fun toggleFavorite(movie: com.gyg.codelab.movies.domain.model.Movie) {
+        handleEvent(HomeEvent.ToggleFavorite(movie))
+    }
 
-  /**
-   * Handle incoming events
-   * Events are processed by reducers via the StateManager
-   */
-  fun handleEvent(event: HomeEvent) {
-    stateManager.publishEvent(event)
-  }
-
-  /**
-   * Toggle favorite status of a movie
-   * Dispatches event - reducer handles the repository update
-   * State will be updated reactively via combined flows in load reducers
-   */
-  fun toggleFavorite(movie: com.gyg.codelab.movies.domain.model.Movie) {
-    handleEvent(HomeEvent.ToggleFavorite(movie))
-  }
-
-  override fun onCleared() {
-  }
+    override fun onCleared() {
+    }
 }

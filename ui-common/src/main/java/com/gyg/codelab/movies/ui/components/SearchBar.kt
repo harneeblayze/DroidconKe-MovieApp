@@ -24,7 +24,7 @@ fun SearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
     onSearch: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     val textColor = if (isDarkTheme) TextPrimary else TextPrimaryLight
@@ -49,14 +49,14 @@ fun SearchBar(
         placeholder = {
             Text(
                 "Search movies...",
-                color = secondaryColor
+                color = secondaryColor,
             )
         },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = "Search",
-                tint = secondaryColor
+                tint = secondaryColor,
             )
         },
         trailingIcon = {
@@ -65,7 +65,7 @@ fun SearchBar(
                     Icon(
                         imageVector = Icons.Default.Clear,
                         contentDescription = "Clear",
-                        tint = secondaryColor
+                        tint = secondaryColor,
                     )
                 }
             }
@@ -79,15 +79,15 @@ fun SearchBar(
             unfocusedBorderColor = secondaryColor.copy(alpha = 0.5f),
             cursorColor = accentColor,
             focusedContainerColor = containerColor,
-            unfocusedContainerColor = containerColor
+            unfocusedContainerColor = containerColor,
         ),
         keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Search
+            imeAction = ImeAction.Search,
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
                 onSearch()
-            }
-        )
+            },
+        ),
     )
 }

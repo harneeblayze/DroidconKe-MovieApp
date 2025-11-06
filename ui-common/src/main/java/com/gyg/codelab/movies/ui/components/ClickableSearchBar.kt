@@ -1,6 +1,5 @@
 package com.gyg.codelab.movies.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -21,46 +20,46 @@ import com.gyg.codelab.movies.ui.theme.*
 
 @Composable
 fun ClickableSearchBar(
-  onClick: () -> Unit,
-  modifier: Modifier = Modifier
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-  val isDarkTheme = isSystemInDarkTheme()
-  val containerColor = if (isDarkTheme) DarkCardBackground else LightCardBackground
-  val textColor = if (isDarkTheme) TextTertiary else TextTertiaryLight
+    val isDarkTheme = isSystemInDarkTheme()
+    val containerColor = if (isDarkTheme) DarkCardBackground else LightCardBackground
+    val textColor = if (isDarkTheme) TextTertiary else TextTertiaryLight
 
-  Card(
-    modifier = modifier
-      .fillMaxWidth()
-      .height(56.dp)
-      .clip(RoundedCornerShape(28.dp))
-      .clickable { onClick() },
-    colors = CardDefaults.cardColors(
-      containerColor = containerColor
-    ),
-    elevation = CardDefaults.cardElevation(
-      defaultElevation = 2.dp
-    )
-  ) {
-    Row(
-      modifier = Modifier
-        .fillMaxSize()
-        .padding(horizontal = 20.dp),
-      verticalAlignment = Alignment.CenterVertically
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(56.dp)
+            .clip(RoundedCornerShape(28.dp))
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(
+            containerColor = containerColor,
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 2.dp,
+        ),
     ) {
-      Icon(
-        imageVector = Icons.Default.Search,
-        contentDescription = "Search",
-        tint = textColor,
-        modifier = Modifier.size(24.dp)
-      )
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = "Search",
+                tint = textColor,
+                modifier = Modifier.size(24.dp),
+            )
 
-      Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
-      Text(
-        text = "Search movies...",
-        style = MaterialTheme.typography.bodyLarge,
-        color = textColor
-      )
+            Text(
+                text = "Search movies...",
+                style = MaterialTheme.typography.bodyLarge,
+                color = textColor,
+            )
+        }
     }
-  }
 }

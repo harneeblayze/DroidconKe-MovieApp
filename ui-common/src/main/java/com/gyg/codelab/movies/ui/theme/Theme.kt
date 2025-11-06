@@ -45,7 +45,7 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun MoviesTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         darkTheme -> DarkColorScheme
@@ -72,6 +72,6 @@ fun MoviesTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

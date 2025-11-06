@@ -22,7 +22,7 @@ import java.net.UnknownHostException
 class MoviesRepositoryImpl(
     private val apiService: MoviesApiService,
     private val apiKey: String,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : MoviesRepository {
 
     override suspend fun getPopularMovies(page: Int): Result<List<Movie>> {
@@ -104,21 +104,21 @@ class MoviesRepositoryImpl(
             is UnknownHostException -> {
                 MovieException.NetworkError(
                     message = "No internet connection",
-                    cause = exception
+                    cause = exception,
                 )
             }
 
             is SocketTimeoutException -> {
                 MovieException.TimeoutError(
                     message = "Connection timeout",
-                    cause = exception
+                    cause = exception,
                 )
             }
 
             is IOException -> {
                 MovieException.NetworkError(
                     message = "Network error occurred",
-                    cause = exception
+                    cause = exception,
                 )
             }
 
@@ -127,17 +127,17 @@ class MoviesRepositoryImpl(
                     in 400..499 -> MovieException.ClientError(
                         code = exception.code(),
                         message = "Request failed: ${exception.message()}",
-                        cause = exception
+                        cause = exception,
                     )
 
                     in 500..599 -> MovieException.ServerError(
                         message = "Server error occurred",
-                        cause = exception
+                        cause = exception,
                     )
 
                     else -> MovieException.UnknownError(
                         message = "HTTP error: ${exception.code()}",
-                        cause = exception
+                        cause = exception,
                     )
                 }
             }
@@ -145,7 +145,7 @@ class MoviesRepositoryImpl(
             else -> {
                 MovieException.UnknownError(
                     message = exception.message ?: "An unexpected error occurred",
-                    cause = exception
+                    cause = exception,
                 )
             }
         }
@@ -160,7 +160,7 @@ class MoviesRepositoryImpl(
             backdropPath = backdropPath,
             releaseDate = releaseDate,
             voteAverage = voteAverage,
-            voteCount = voteCount
+            voteCount = voteCount,
         )
     }
 }

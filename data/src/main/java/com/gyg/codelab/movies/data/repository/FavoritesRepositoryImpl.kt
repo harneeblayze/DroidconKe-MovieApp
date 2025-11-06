@@ -12,35 +12,35 @@ import kotlinx.coroutines.flow.map
  */
 class FavoritesRepositoryImpl : FavoritesRepository {
 
-  private val favoriteMovies = MutableStateFlow<Map<Int, Movie>>(emptyMap())
+    private val favoriteMovies = MutableStateFlow<Map<Int, Movie>>(emptyMap())
 
-  override fun getFavoriteMovies(): Flow<List<Movie>> {
-    return favoriteMovies.map { it.values.toList() }
-  }
-
-  override fun isFavorite(movieId: Int): Flow<Boolean> {
-    return favoriteMovies.map { it.containsKey(movieId) }
-  }
-
-  override suspend fun toggleFavorite(movie: Movie) {
-    val currentFavorites = favoriteMovies.value.toMutableMap()
-    if (currentFavorites.containsKey(movie.id)) {
-      currentFavorites.remove(movie.id)
-    } else {
-      currentFavorites[movie.id] = movie
+    override fun getFavoriteMovies(): Flow<List<Movie>> {
+        return favoriteMovies.map { it.values.toList() }
     }
-    favoriteMovies.value = currentFavorites
-  }
 
-  override suspend fun addFavorite(movie: Movie) {
-    val currentFavorites = favoriteMovies.value.toMutableMap()
-    currentFavorites[movie.id] = movie
-    favoriteMovies.value = currentFavorites
-  }
+    override fun isFavorite(movieId: Int): Flow<Boolean> {
+        return favoriteMovies.map { it.containsKey(movieId) }
+    }
 
-  override suspend fun removeFavorite(movieId: Int) {
-    val currentFavorites = favoriteMovies.value.toMutableMap()
-    currentFavorites.remove(movieId)
-    favoriteMovies.value = currentFavorites
-  }
+    override suspend fun toggleFavorite(movie: Movie) {
+        val currentFavorites = favoriteMovies.value.toMutableMap()
+        if (currentFavorites.containsKey(movie.id)) {
+            currentFavorites.remove(movie.id)
+        } else {
+            currentFavorites[movie.id] = movie
+        }
+        favoriteMovies.value = currentFavorites
+    }
+
+    override suspend fun addFavorite(movie: Movie) {
+        val currentFavorites = favoriteMovies.value.toMutableMap()
+        currentFavorites[movie.id] = movie
+        favoriteMovies.value = currentFavorites
+    }
+
+    override suspend fun removeFavorite(movieId: Int) {
+        val currentFavorites = favoriteMovies.value.toMutableMap()
+        currentFavorites.remove(movieId)
+        favoriteMovies.value = currentFavorites
+    }
 }

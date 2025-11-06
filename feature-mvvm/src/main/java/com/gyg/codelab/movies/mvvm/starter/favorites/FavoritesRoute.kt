@@ -2,9 +2,7 @@ package com.gyg.codelab.movies.mvvm.starter.favorites
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.ui.screens.FavoritesScreen
 
 /**
  * Implement FavoritesRoute for the Favorites feature
@@ -25,14 +23,14 @@ import com.gyg.codelab.movies.ui.screens.FavoritesScreen
  */
 @Composable
 fun FavoritesRoute(
-  viewModel: FavoritesViewModel,
-  onMovieClick: (Movie) -> Unit,
+    viewModel: FavoritesViewModel,
+    onMovieClick: (Movie) -> Unit,
 ) {
-  // TODO: Collect favoriteMovies using collectAsStateWithLifecycle()
-  // Hint: Provide initialValue = emptyList()
+    // TODO: Collect favoriteMovies using collectAsStateWithLifecycle()
+    // Hint: Provide initialValue = emptyList()
 
-  // TODO: Call FavoritesScreen with:
-  // - favoriteMovies parameter
-  // - onMovieClick callback
-  // - onToggleFavorite callback that calls viewModel.toggleFavorite(it)
+    // TODO: Call FavoritesScreen with:
+    // - favoriteMovies parameter
+    // - onMovieClick callback
+    // - onToggleFavorite callback that calls viewModel.toggleFavorite(it)
 }

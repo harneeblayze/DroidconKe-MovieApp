@@ -14,22 +14,22 @@ import com.gyg.codelab.movies.ui.screens.LazyMoviesScreen
  */
 @Composable
 fun HomeMviRoute(
-  viewModel: HomeMviViewModel,
-  onMovieClick: (Movie) -> Unit,
-  onSearchClick: () -> Unit = {},
+    viewModel: HomeMviViewModel,
+    onMovieClick: (Movie) -> Unit,
+    onSearchClick: () -> Unit = {},
 ) {
-  // Collect UI state with movieSections
-  val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    // Collect UI state with movieSections
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-  LazyMoviesScreen(
-    movieSections = uiState.movieSections,
-    onMovieClick = onMovieClick,
-    onSearchClick = onSearchClick,
-    onToggleFavorite = { movie ->
-      viewModel.toggleFavorite(movie)
-    },
-    onRetry = { category ->
-      viewModel.handleEvent(HomeEvent.Refresh)
-    }
-  )
+    LazyMoviesScreen(
+        movieSections = uiState.movieSections,
+        onMovieClick = onMovieClick,
+        onSearchClick = onSearchClick,
+        onToggleFavorite = { movie ->
+            viewModel.toggleFavorite(movie)
+        },
+        onRetry = { category ->
+            viewModel.handleEvent(HomeEvent.Refresh)
+        },
+    )
 }

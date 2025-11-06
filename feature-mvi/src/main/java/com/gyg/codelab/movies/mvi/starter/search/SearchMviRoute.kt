@@ -16,16 +16,16 @@ import com.gyg.codelab.movies.domain.model.Movie
  */
 @Composable
 fun SearchMviRoute(
-  viewModel: SearchMviViewModel,
-  onMovieClick: (Movie) -> Unit,
+    viewModel: SearchMviViewModel,
+    onMovieClick: (Movie) -> Unit,
 ) {
-  // TODO: Collect searchResults using collectAsStateWithLifecycle()
-  // TODO: Collect searchQuery using collectAsStateWithLifecycle()
+    // TODO: Collect searchResults using collectAsStateWithLifecycle()
+    // TODO: Collect searchQuery using collectAsStateWithLifecycle()
 
-  // TODO: Call SearchScreen with:
-  // - query parameter
-  // - searchResults parameter
-  // - onQueryChange callback that calls viewModel.searchMovies(it)
-  // - onMovieClick callback
-  // - onToggleFavorite callback that calls viewModel.toggleFavorite(movie)
+    // TODO: Call SearchScreen with:
+    // - query parameter
+    // - searchResults parameter
+    // - onQueryChange callback that calls viewModel.searchMovies(it)
+    // - onMovieClick callback
+    // - onToggleFavorite callback that calls viewModel.toggleFavorite(movie)
 }

@@ -23,99 +23,99 @@ import com.gyg.codelab.movies.ui.theme.*
 
 @Composable
 fun FavoritesScreen(
-  favoriteMovies: List<Movie>,
-  onMovieClick: (Movie) -> Unit,
-  onToggleFavorite: (Movie) -> Unit,
-  modifier: Modifier = Modifier
+    favoriteMovies: List<Movie>,
+    onMovieClick: (Movie) -> Unit,
+    onToggleFavorite: (Movie) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-  val isDarkTheme = isSystemInDarkTheme()
-  val secondaryTextColor = if (isDarkTheme) TextSecondary else TextSecondaryLight
-  val tertiaryTextColor = if (isDarkTheme) TextTertiary else TextTertiaryLight
+    val isDarkTheme = isSystemInDarkTheme()
+    val secondaryTextColor = if (isDarkTheme) TextSecondary else TextSecondaryLight
+    val tertiaryTextColor = if (isDarkTheme) TextTertiary else TextTertiaryLight
 
-  Column(
-    modifier = modifier
-      .fillMaxSize()
-      .background(MaterialTheme.colorScheme.background)
-      .padding(top = 46.dp)
-  ) {
-    // Header
-    Text(
-      text = "My Favorites",
-      style = MaterialTheme.typography.headlineSmall.copy(
-        color = MaterialTheme.colorScheme.onBackground,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
-      ),
-      modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
-    )
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .padding(top = 46.dp),
+    ) {
+        // Header
+        Text(
+            text = "My Favorites",
+            style = MaterialTheme.typography.headlineSmall.copy(
+                color = MaterialTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
+            ),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
+        )
 
-    if (favoriteMovies.isEmpty()) {
-      // Empty state
-      Box(
-        modifier = Modifier
-          .fillMaxSize()
-          .padding(32.dp),
-        contentAlignment = Alignment.Center
-      ) {
-        Column(
-          horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-          Icon(
-            imageVector = Icons.Default.FavoriteBorder,
-            contentDescription = null,
-            tint = tertiaryTextColor,
-            modifier = Modifier.size(80.dp)
-          )
+        if (favoriteMovies.isEmpty()) {
+            // Empty state
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(32.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.FavoriteBorder,
+                        contentDescription = null,
+                        tint = tertiaryTextColor,
+                        modifier = Modifier.size(80.dp),
+                    )
 
-          Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
 
-          Text(
-            text = "No favorites yet",
-            style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.onBackground,
-            fontWeight = FontWeight.Bold
-          )
+                    Text(
+                        text = "No favorites yet",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontWeight = FontWeight.Bold,
+                    )
 
-          Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
-          Text(
-            text = "Movies you mark as favorite will appear here",
-            style = MaterialTheme.typography.bodyMedium,
-            color = secondaryTextColor,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth(0.8f)
-          )
+                    Text(
+                        text = "Movies you mark as favorite will appear here",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = secondaryTextColor,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(0.8f),
+                    )
+                }
+            }
+        } else {
+            // Favorites list
+            LazyColumn(
+                contentPadding = PaddingValues(
+                    horizontal = 16.dp,
+                    vertical = 8.dp,
+                ),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.padding(bottom = 80.dp),
+            ) {
+                item {
+                    Text(
+                        text = "${favoriteMovies.size} movie${if (favoriteMovies.size != 1) "s" else ""} in your collection",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = secondaryTextColor,
+                        modifier = Modifier.padding(bottom = 8.dp),
+                    )
+                }
+
+                items(
+                    items = favoriteMovies,
+                    key = { movie -> movie.id },
+                ) { movie ->
+                    DetailedMovieCard(
+                        movie = movie,
+                        onClick = onMovieClick,
+                    )
+                }
+            }
         }
-      }
-    } else {
-      // Favorites list
-      LazyColumn(
-        contentPadding = PaddingValues(
-          horizontal = 16.dp,
-          vertical = 8.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.padding(bottom = 80.dp)
-      ) {
-        item {
-          Text(
-            text = "${favoriteMovies.size} movie${if (favoriteMovies.size != 1) "s" else ""} in your collection",
-            style = MaterialTheme.typography.bodyMedium,
-            color = secondaryTextColor,
-            modifier = Modifier.padding(bottom = 8.dp)
-          )
-        }
-
-        items(
-          items = favoriteMovies,
-          key = { movie -> movie.id }
-        ) { movie ->
-          DetailedMovieCard(
-            movie = movie,
-            onClick = onMovieClick
-          )
-        }
-      }
     }
-  }
 }

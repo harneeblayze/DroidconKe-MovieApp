@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.gyg.codelab.movies.mvi2"
+    namespace = "com.gyg.codelab.movies.mvi"
     compileSdk = 36
 
     defaultConfig {

@@ -16,14 +16,14 @@ import com.gyg.codelab.movies.domain.model.Movie
  */
 @Composable
 fun FavoritesMviRoute(
-  viewModel: FavoritesMviViewModel,
-  onMovieClick: (Movie) -> Unit,
+    viewModel: FavoritesMviViewModel,
+    onMovieClick: (Movie) -> Unit,
 ) {
-  // TODO: Collect favoriteMovies using collectAsStateWithLifecycle()
-  // Hint: Provide initialValue = emptyList()
+    // TODO: Collect favoriteMovies using collectAsStateWithLifecycle()
+    // Hint: Provide initialValue = emptyList()
 
-  // TODO: Call FavoritesScreen with:
-  // - favoriteMovies parameter
-  // - onMovieClick callback
-  // - onToggleFavorite callback that calls viewModel.toggleFavorite(it)
+    // TODO: Call FavoritesScreen with:
+    // - favoriteMovies parameter
+    // - onMovieClick callback
+    // - onToggleFavorite callback that calls viewModel.toggleFavorite(it)
 }

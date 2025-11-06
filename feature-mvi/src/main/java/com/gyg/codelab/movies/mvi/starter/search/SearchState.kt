@@ -1,8 +1,5 @@
 package com.gyg.codelab.movies.mvi.starter.search
 
-import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.mvi2.state_manager.State
-
 /**
  * TODO: Implement SearchState for the Search feature
  *

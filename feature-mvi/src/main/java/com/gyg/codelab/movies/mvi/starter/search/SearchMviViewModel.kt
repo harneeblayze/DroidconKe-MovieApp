@@ -32,39 +32,39 @@ import kotlinx.coroutines.flow.asStateFlow
  * Reference: feature-mvi/src/main/java/com/gyg/codelab/movies/mvi/home/HomeMviViewModel.kt
  */
 class SearchMviViewModel(
-  // TODO: Inject dependencies (StateManager, optional StateTransformer)
+    // TODO: Inject dependencies (StateManager, optional StateTransformer)
 ) : ViewModel() {
 
-  // TODO: Get domain state from StateManager
+    // TODO: Get domain state from StateManager
 
-  // TODO: Expose UI state (either transformed or direct from domain state)
-  val searchResults: StateFlow<List<Movie>> =
-    MutableStateFlow<List<Movie>>(emptyList()).asStateFlow()
-  val searchQuery: StateFlow<String> = MutableStateFlow<String>("").asStateFlow()
+    // TODO: Expose UI state (either transformed or direct from domain state)
+    val searchResults: StateFlow<List<Movie>> =
+        MutableStateFlow<List<Movie>>(emptyList()).asStateFlow()
+    val searchQuery: StateFlow<String> = MutableStateFlow<String>("").asStateFlow()
 
-  /**
-   * TODO: Implement event handler
-   * Purpose: Publish events to StateManager for processing
-   */
-  fun handleEvent(event: Any /* Replace with SearchEvent */) {
-    // TODO: Implement
-  }
+    /**
+     * TODO: Implement event handler
+     * Purpose: Publish events to StateManager for processing
+     */
+    fun handleEvent(event: Any /* Replace with SearchEvent */) {
+        // TODO: Implement
+    }
 
-  /**
-   * TODO: Implement search function
-   * Purpose: Handle user search input
-   * Action: Create and publish appropriate event
-   */
-  fun searchMovies(query: String) {
-    // TODO: Implement
-  }
+    /**
+     * TODO: Implement search function
+     * Purpose: Handle user search input
+     * Action: Create and publish appropriate event
+     */
+    fun searchMovies(query: String) {
+        // TODO: Implement
+    }
 
-  /**
-   * TODO: Implement toggle favorite function
-   * Purpose: Handle user favorite toggle
-   * Action: Create and publish appropriate event
-   */
-  fun toggleFavorite(movie: Movie) {
-    // TODO: Implement
-  }
+    /**
+     * TODO: Implement toggle favorite function
+     * Purpose: Handle user favorite toggle
+     * Action: Create and publish appropriate event
+     */
+    fun toggleFavorite(movie: Movie) {
+        // TODO: Implement
+    }
 }

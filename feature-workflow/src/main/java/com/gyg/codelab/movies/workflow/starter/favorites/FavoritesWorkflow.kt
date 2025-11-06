@@ -1,9 +1,5 @@
 package com.gyg.codelab.movies.workflow.starter.favorites
 
-import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.domain.repository.FavoritesRepository
-import kotlinx.coroutines.CoroutineScope
-
 /**
  * TODO: Implement FavoritesWorkflow - A StatefulWorkflow for favorites display
  *

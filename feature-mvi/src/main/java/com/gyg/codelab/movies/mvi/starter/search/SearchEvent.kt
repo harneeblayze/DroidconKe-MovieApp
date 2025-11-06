@@ -1,7 +1,6 @@
 package com.gyg.codelab.movies.mvi.starter.search
 
-import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.mvi2.state_manager.Event
+import com.gyg.codelab.movies.mvi.state_manager.Event
 
 /**
  * TODO: Implement SearchEvent for the Search feature
@@ -25,6 +24,6 @@ import com.gyg.codelab.movies.mvi2.state_manager.Event
  */
 
 // TODO: Implement SearchEvent sealed class here
- sealed class SearchEvent : Event {
-   // TODO: Implement events you need here
- }
+sealed class SearchEvent : Event {
+    // TODO: Implement events you need here
+}

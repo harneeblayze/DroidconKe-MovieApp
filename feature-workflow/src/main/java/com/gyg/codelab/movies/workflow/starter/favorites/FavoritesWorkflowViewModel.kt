@@ -1,10 +1,7 @@
 package com.gyg.codelab.movies.workflow.starter.favorites
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.gyg.codelab.movies.domain.repository.FavoritesRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 /**
  * TODO: Implement FavoritesWorkflowViewModel using Workflow pattern
@@ -62,32 +59,32 @@ import kotlinx.coroutines.flow.StateFlow
  * Reference: feature-workflow/src/main/java/com/gyg/codelab/movies/workflow/favorites/FavoritesWorkflowViewModel.kt
  */
 class FavoritesWorkflowViewModel(
-  private val favoritesRepository: FavoritesRepository
+    private val favoritesRepository: FavoritesRepository,
 ) : ViewModel() {
 
-  // TODO: Create FavoritesWorkflow instance (after implementing FavoritesWorkflow.kt)
-  // private val favoritesWorkflow = FavoritesWorkflow(
-  //   favoritesRepository = favoritesRepository,
-  //   viewModelScope = viewModelScope,
-  // )
+    // TODO: Create FavoritesWorkflow instance (after implementing FavoritesWorkflow.kt)
+    // private val favoritesWorkflow = FavoritesWorkflow(
+    //   favoritesRepository = favoritesRepository,
+    //   viewModelScope = viewModelScope,
+    // )
 
-  // TODO: Implement rendering using renderWorkflowIn
-  // val favoritesRendering: StateFlow<FavoritesRendering> = renderWorkflowIn(
-  //   workflow = favoritesWorkflow,
-  //   scope = viewModelScope,
-  //   props = MutableStateFlow(Unit),
-  //   onOutput = { }
-  // )
-  //   .map { it.rendering }
-  //   .stateIn(
-  //     scope = viewModelScope,
-  //     started = SharingStarted.WhileSubscribed(5000),
-  //     initialValue = FavoritesRendering(
-  //       favorites = emptyList(),
-  //       onToggleFavourite = {}
-  //     )
-  //   )
+    // TODO: Implement rendering using renderWorkflowIn
+    // val favoritesRendering: StateFlow<FavoritesRendering> = renderWorkflowIn(
+    //   workflow = favoritesWorkflow,
+    //   scope = viewModelScope,
+    //   props = MutableStateFlow(Unit),
+    //   onOutput = { }
+    // )
+    //   .map { it.rendering }
+    //   .stateIn(
+    //     scope = viewModelScope,
+    //     started = SharingStarted.WhileSubscribed(5000),
+    //     initialValue = FavoritesRendering(
+    //       favorites = emptyList(),
+    //       onToggleFavourite = {}
+    //     )
+    //   )
 
-  // Placeholder for now - will be replaced with actual rendering
-  // val favoritesRendering: StateFlow<FavoritesRendering> = ...
+    // Placeholder for now - will be replaced with actual rendering
+    // val favoritesRendering: StateFlow<FavoritesRendering> = ...
 }

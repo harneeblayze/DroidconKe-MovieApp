@@ -21,41 +21,40 @@ import kotlinx.coroutines.flow.*
  * multiple child MovieCategoryWorkflows.
  */
 class HomeWorkflowViewModel(
-  moviesRepository: MoviesRepository,
-  private val favoritesRepository: FavoritesRepository
+    moviesRepository: MoviesRepository,
+    private val favoritesRepository: FavoritesRepository,
 ) : ViewModel() {
 
-  // Create MovieCategoryWorkflow with viewModelScope
-  private val movieCategoryWorkflow = MovieCategoryWorkflow(
-    repository = moviesRepository,
-    favoritesRepository = favoritesRepository
-  )
-
-  // Create HomeWorkflow with the category workflow
-  private val homeWorkflow = HomeWorkflow(
-    movieCategoryWorkflow = movieCategoryWorkflow,
-    viewModelScope = viewModelScope,
-    favoritesRepository = favoritesRepository,
-  )
-
-  /**
-   * Render the HomeWorkflow and extract movie sections from the rendering
-   */
-  val homeRendering: StateFlow<HomeRendering> = renderWorkflowIn(
-    workflow = homeWorkflow,
-    scope = viewModelScope,
-    props = MutableStateFlow(Unit),
-    onOutput = { /* HomeWorkflow has no output */ }
-  )
-    .map { it.rendering }
-    .stateIn(
-      scope = viewModelScope,
-      started = SharingStarted.WhileSubscribed(5000),
-      initialValue = HomeRendering(
-        movies = emptyList(),
-        onToggleFavourite = {},
-        onRetryLoad = {}
-      )
+    // Create MovieCategoryWorkflow with viewModelScope
+    private val movieCategoryWorkflow = MovieCategoryWorkflow(
+        repository = moviesRepository,
+        favoritesRepository = favoritesRepository,
     )
 
+    // Create HomeWorkflow with the category workflow
+    private val homeWorkflow = HomeWorkflow(
+        movieCategoryWorkflow = movieCategoryWorkflow,
+        viewModelScope = viewModelScope,
+        favoritesRepository = favoritesRepository,
+    )
+
+    /**
+     * Render the HomeWorkflow and extract movie sections from the rendering
+     */
+    val homeRendering: StateFlow<HomeRendering> = renderWorkflowIn(
+        workflow = homeWorkflow,
+        scope = viewModelScope,
+        props = MutableStateFlow(Unit),
+        onOutput = { /* HomeWorkflow has no output */ },
+    )
+        .map { it.rendering }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = HomeRendering(
+                movies = emptyList(),
+                onToggleFavourite = {},
+                onRetryLoad = {},
+            ),
+        )
 }

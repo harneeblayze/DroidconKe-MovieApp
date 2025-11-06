@@ -1,8 +1,5 @@
 package com.gyg.codelab.movies.mvi.starter.favorites
 
-import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.mvi2.state_manager.State
-
 /**
  * TODO: Implement FavoritesState for the Favorites feature
  *

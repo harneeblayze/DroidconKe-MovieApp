@@ -1,8 +1,5 @@
 package com.gyg.codelab.movies.mvi.starter.search
 
-import com.gyg.codelab.movies.mvi2.state_manager.StateManager
-import com.gyg.codelab.movies.mvi2.state_manager.StateManagerImpl
-import com.gyg.codelab.movies.mvi2.state_manager.scopedReducer
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -29,16 +26,16 @@ const val SEARCH_MVI_STARTER_CONTAINER = "SEARCH_MVI_STARTER_CONTAINER"
  */
 val searchStarterMviModule = module {
 
-  scope(named(SEARCH_MVI_STARTER_CONTAINER)) {
+    scope(named(SEARCH_MVI_STARTER_CONTAINER)) {
 
-    // ViewModel - injected with StateManager and optional Transformer
-    viewModelOf(::SearchMviViewModel)
+        // ViewModel - injected with StateManager and optional Transformer
+        viewModelOf(::SearchMviViewModel)
 
-    // Optional: Transformer (uncomment if you create one)
-    // scoped { SearchTransformer() }
+        // Optional: Transformer (uncomment if you create one)
+        // scoped { SearchTransformer() }
 
-    // State Manager - manages state and event processing
-    // TODO: Once you implement SearchState and SearchEvent, uncomment this:
+        // State Manager - manages state and event processing
+        // TODO: Once you implement SearchState and SearchEvent, uncomment this:
     /*
     scoped<StateManager<*, *>> {
       StateManagerImpl<SearchState, SearchEvent>(
@@ -47,11 +44,11 @@ val searchStarterMviModule = module {
         lazyViewModelScope = { get() },
       )
     }
-    */
+     */
 
-    // ========== REDUCERS ==========
-    // All dependencies (repositories, scope, etc.) are injected automatically by Koin
-    // TODO: Once you implement the reducers, uncomment these:
+        // ========== REDUCERS ==========
+        // All dependencies (repositories, scope, etc.) are injected automatically by Koin
+        // TODO: Once you implement the reducers, uncomment these:
 
     /*
     // Search movies reducer - handles async search with reactive favorites
@@ -78,6 +75,6 @@ val searchStarterMviModule = module {
         scope = get()                  // Injected
       )
     }
-    */
-  }
+     */
+    }
 }

@@ -1,7 +1,6 @@
 package com.gyg.codelab.movies.workflow.starter.search
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.gyg.codelab.movies.domain.model.Movie
 import com.gyg.codelab.movies.domain.repository.FavoritesRepository
 import com.gyg.codelab.movies.domain.repository.SearchRepository
@@ -40,73 +39,73 @@ import kotlinx.coroutines.flow.asStateFlow
  * Reference: feature-workflow/src/main/java/com/gyg/codelab/movies/workflow/search/SearchWorkflowViewModel.kt
  */
 class SearchWorkflowViewModel(
-  private val searchRepository: SearchRepository,
-  private val favoritesRepository: FavoritesRepository
+    private val searchRepository: SearchRepository,
+    private val favoritesRepository: FavoritesRepository,
 ) : ViewModel() {
 
-  // TODO: Create SearchWorkflow instance
-  // private val searchWorkflow = SearchWorkflow(
-  //   searchRepository = searchRepository,
-  //   favoritesRepository = favoritesRepository
-  // )
+    // TODO: Create SearchWorkflow instance
+    // private val searchWorkflow = SearchWorkflow(
+    //   searchRepository = searchRepository,
+    //   favoritesRepository = favoritesRepository
+    // )
 
-  // TODO: Render the workflow using renderWorkflowIn()
-  // private val searchRendering: StateFlow<SearchRendering> = renderWorkflowIn(
-  //   workflow = searchWorkflow,
-  //   scope = viewModelScope,
-  //   props = MutableStateFlow(Unit),
-  //   onOutput = { }
-  // )
-  //   .map { it.rendering }
-  //   .stateIn(
-  //     scope = viewModelScope,
-  //     started = SharingStarted.WhileSubscribed(5000),
-  //     initialValue = SearchRendering(
-  //       query = "",
-  //       searchResults = emptyList(),
-  //       isLoading = false,
-  //       error = null,
-  //       onQueryChange = {}
-  //     )
-  //   )
+    // TODO: Render the workflow using renderWorkflowIn()
+    // private val searchRendering: StateFlow<SearchRendering> = renderWorkflowIn(
+    //   workflow = searchWorkflow,
+    //   scope = viewModelScope,
+    //   props = MutableStateFlow(Unit),
+    //   onOutput = { }
+    // )
+    //   .map { it.rendering }
+    //   .stateIn(
+    //     scope = viewModelScope,
+    //     started = SharingStarted.WhileSubscribed(5000),
+    //     initialValue = SearchRendering(
+    //       query = "",
+    //       searchResults = emptyList(),
+    //       isLoading = false,
+    //       error = null,
+    //       onQueryChange = {}
+    //     )
+    //   )
 
-  // TODO: Expose query as derived flow
-  // val query: StateFlow<String> = searchRendering
-  //   .map { it.query }
-  //   .stateIn(
-  //     scope = viewModelScope,
-  //     started = SharingStarted.WhileSubscribed(5000),
-  //     initialValue = ""
-  //   )
+    // TODO: Expose query as derived flow
+    // val query: StateFlow<String> = searchRendering
+    //   .map { it.query }
+    //   .stateIn(
+    //     scope = viewModelScope,
+    //     started = SharingStarted.WhileSubscribed(5000),
+    //     initialValue = ""
+    //   )
 
-  // TODO: Expose search results as derived flow
-  // val searchResults: StateFlow<List<Movie>> = searchRendering
-  //   .map { it.searchResults }
-  //   .stateIn(
-  //     scope = viewModelScope,
-  //     started = SharingStarted.WhileSubscribed(5000),
-  //     initialValue = emptyList()
-  //   )
+    // TODO: Expose search results as derived flow
+    // val searchResults: StateFlow<List<Movie>> = searchRendering
+    //   .map { it.searchResults }
+    //   .stateIn(
+    //     scope = viewModelScope,
+    //     started = SharingStarted.WhileSubscribed(5000),
+    //     initialValue = emptyList()
+    //   )
 
-  // Placeholder for now - replace with actual implementation above
-  val query: StateFlow<String> = MutableStateFlow<String>("").asStateFlow()
-  val searchResults: StateFlow<List<Movie>> =
-    MutableStateFlow<List<Movie>>(emptyList()).asStateFlow()
+    // Placeholder for now - replace with actual implementation above
+    val query: StateFlow<String> = MutableStateFlow<String>("").asStateFlow()
+    val searchResults: StateFlow<List<Movie>> =
+        MutableStateFlow<List<Movie>>(emptyList()).asStateFlow()
 
-  /**
-   * TODO: Implement performSearch function
-   * Call searchRendering.value.onQueryChange(query)
-   */
-  fun performSearch(query: String) {
-    // TODO: searchRendering.value.onQueryChange(query)
-  }
+    /**
+     * TODO: Implement performSearch function
+     * Call searchRendering.value.onQueryChange(query)
+     */
+    fun performSearch(query: String) {
+        // TODO: searchRendering.value.onQueryChange(query)
+    }
 
-  /**
-   * TODO: Implement toggleFavorite function
-   * Launch coroutine to call favoritesRepository.toggleFavorite(movie)
-   */
-  fun toggleFavorite(movie: Movie) {
-    // TODO: viewModelScope.launch { favoritesRepository.toggleFavorite(movie) }
-    // NB: if you implement the workflow properly, you won't need this function
-  }
+    /**
+     * TODO: Implement toggleFavorite function
+     * Launch coroutine to call favoritesRepository.toggleFavorite(movie)
+     */
+    fun toggleFavorite(movie: Movie) {
+        // TODO: viewModelScope.launch { favoritesRepository.toggleFavorite(movie) }
+        // NB: if you implement the workflow properly, you won't need this function
+    }
 }

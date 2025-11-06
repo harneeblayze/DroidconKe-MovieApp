@@ -2,16 +2,15 @@ package com.gyg.codelab.movies.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -27,7 +26,7 @@ fun MovieCard(
     onClick: (Movie) -> Unit,
     modifier: Modifier = Modifier,
     isFavorite: Boolean = false,
-    onFavoriteClick: ((Movie) -> Unit)? = null
+    onFavoriteClick: ((Movie) -> Unit)? = null,
 ) {
     Card(
         modifier = modifier
@@ -36,13 +35,13 @@ fun MovieCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = DarkCardBackground
-        )
+            containerColor = DarkCardBackground,
+        ),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+                .padding(12.dp),
         ) {
             // Enhanced poster with rounded corners and favorite overlay
             Box {
@@ -52,13 +51,13 @@ fun MovieCard(
                             .width(100.dp)
                             .height(150.dp),
                         shape = RoundedCornerShape(8.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
                     ) {
                         AsyncImage(
                             model = "https://image.tmdb.org/t/p/w185$posterPath",
                             contentDescription = movie.title,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.Crop,
                         )
                     }
                 }
@@ -70,13 +69,13 @@ fun MovieCard(
                         modifier = Modifier
                             .align(Alignment.TopEnd)
                             .size(32.dp)
-                            .padding(4.dp)
+                            .padding(4.dp),
                     ) {
                         Icon(
                             imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                             contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
                             tint = if (isFavorite) Color.Red else Color.White.copy(alpha = 0.9f),
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(20.dp),
                         )
                     }
                 }
@@ -87,23 +86,23 @@ fun MovieCard(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f)
+                    .weight(1f),
             ) {
                 // Title with better typography
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.Top
+                    verticalAlignment = Alignment.Top,
                 ) {
                     Text(
                         text = movie.title,
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            color = TextPrimary
+                            color = TextPrimary,
                         ),
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
 
                     // Alternative position for favorite button (in title row)
@@ -122,7 +121,7 @@ fun MovieCard(
                             )
                         }
                     }
-                    */
+                     */
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -131,7 +130,7 @@ fun MovieCard(
                 Text(
                     text = movie.releaseDate,
                     style = MaterialTheme.typography.bodySmall,
-                    color = TextTertiary
+                    color = TextTertiary,
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -142,34 +141,34 @@ fun MovieCard(
                     style = MaterialTheme.typography.bodySmall,
                     color = TextSecondary,
                     maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 // Rating badge with star icon
                 Row(
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Star,
                         contentDescription = "Rating",
                         tint = GoldStar,
-                        modifier = Modifier.size(16.dp)
+                        modifier = Modifier.size(16.dp),
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = String.format("%.1f", movie.voteAverage),
                         style = MaterialTheme.typography.bodyMedium.copy(
-                            fontWeight = FontWeight.Medium
+                            fontWeight = FontWeight.Medium,
                         ),
-                        color = TextPrimary
+                        color = TextPrimary,
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "(${movie.voteCount} votes)",
                         style = MaterialTheme.typography.bodySmall,
-                        color = TextTertiary
+                        color = TextTertiary,
                     )
                 }
             }

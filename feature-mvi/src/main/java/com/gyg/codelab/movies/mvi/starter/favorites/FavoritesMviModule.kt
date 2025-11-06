@@ -1,8 +1,5 @@
 package com.gyg.codelab.movies.mvi.starter.favorites
 
-import com.gyg.codelab.movies.mvi2.state_manager.StateManager
-import com.gyg.codelab.movies.mvi2.state_manager.StateManagerImpl
-import com.gyg.codelab.movies.mvi2.state_manager.scopedReducer
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -44,13 +41,13 @@ const val FAVORITES_MVI_STARTER_CONTAINER = "FAVORITES_MVI_STARTER_CONTAINER"
  */
 val favoritesStarterMviModule = module {
 
-  scope(named(FAVORITES_MVI_STARTER_CONTAINER)) {
+    scope(named(FAVORITES_MVI_STARTER_CONTAINER)) {
 
-    // ViewModel - injected with StateManager
-    viewModelOf(::FavoritesMviViewModel)
+        // ViewModel - injected with StateManager
+        viewModelOf(::FavoritesMviViewModel)
 
-    // State Manager - manages state and event processing
-    // NOTE: Uncomment this once you've implemented FavoritesState and FavoritesEvent
+        // State Manager - manages state and event processing
+        // NOTE: Uncomment this once you've implemented FavoritesState and FavoritesEvent
     /*
     scoped<StateManager<*, *>> {
       StateManagerImpl<FavoritesState, FavoritesEvent>(
@@ -59,10 +56,10 @@ val favoritesStarterMviModule = module {
         lazyViewModelScope = { get() },
       )
     }
-    */
+     */
 
-    // ========== REDUCERS ==========
-    // NOTE: Uncomment these once you've implemented the reducers
+        // ========== REDUCERS ==========
+        // NOTE: Uncomment these once you've implemented the reducers
 
     /*
     // Load favorites reducer
@@ -88,6 +85,6 @@ val favoritesStarterMviModule = module {
         scope = get()
       )
     }
-    */
-  }
+     */
+    }
 }

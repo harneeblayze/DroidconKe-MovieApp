@@ -1,7 +1,6 @@
 package com.gyg.codelab.movies.ui.components
 
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -31,139 +30,139 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AutoSlidingCarousel(
-  movies: List<Movie>,
-  onMovieClick: (Movie) -> Unit,
-  modifier: Modifier = Modifier,
-  slideDuration: Long = 3000L
+    movies: List<Movie>,
+    onMovieClick: (Movie) -> Unit,
+    modifier: Modifier = Modifier,
+    slideDuration: Long = 3000L,
 ) {
-  if (movies.isEmpty()) return
+    if (movies.isEmpty()) return
 
-  val isDarkTheme = isSystemInDarkTheme()
-  val primaryTextColor = if (isDarkTheme) TextPrimary else Color.White
-  val secondaryTextColor = if (isDarkTheme) TextSecondary else Color.White.copy(alpha = 0.8f)
-  val indicatorActiveColor = if (isDarkTheme) TextPrimary else TextPrimaryLight
-  val indicatorInactiveColor = if (isDarkTheme) TextTertiary else TextTertiaryLight
+    val isDarkTheme = isSystemInDarkTheme()
+    val primaryTextColor = if (isDarkTheme) TextPrimary else Color.White
+    val secondaryTextColor = if (isDarkTheme) TextSecondary else Color.White.copy(alpha = 0.8f)
+    val indicatorActiveColor = if (isDarkTheme) TextPrimary else TextPrimaryLight
+    val indicatorInactiveColor = if (isDarkTheme) TextTertiary else TextTertiaryLight
 
-  var currentIndex by remember { mutableStateOf(0) }
-  val scope = rememberCoroutineScope()
+    var currentIndex by remember { mutableStateOf(0) }
+    val scope = rememberCoroutineScope()
 
-  // Auto-slide effect
-  LaunchedEffect(movies) {
-    while (true) {
-      delay(slideDuration)
-      currentIndex = (currentIndex + 1) % movies.size
-    }
-  }
-
-  Column(
-    modifier = modifier,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-    // Carousel Card
-    Card(
-      modifier = Modifier
-        .fillMaxWidth()
-        .height(220.dp)
-        .padding(horizontal = 16.dp)
-        .clickable { onMovieClick(movies[currentIndex]) },
-      shape = RoundedCornerShape(16.dp),
-      elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-    ) {
-      Box(modifier = Modifier.fillMaxSize()) {
-        // Movie Poster
-        movies[currentIndex].posterPath?.let { posterPath ->
-          AsyncImage(
-            model = "https://image.tmdb.org/t/p/w500$posterPath",
-            contentDescription = movies[currentIndex].title,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-          )
+    // Auto-slide effect
+    LaunchedEffect(movies) {
+        while (true) {
+            delay(slideDuration)
+            currentIndex = (currentIndex + 1) % movies.size
         }
+    }
 
-        // Gradient Overlay (always dark to ensure text visibility)
-        Box(
-          modifier = Modifier
-            .fillMaxSize()
-            .background(
-              Brush.verticalGradient(
-                colors = listOf(
-                  Color.Transparent,
-                  Color.Black.copy(alpha = 0.7f)
-                ),
-                startY = 300f
-              )
-            )
-        )
-
-        // Movie Info
-        Column(
-          modifier = Modifier
-            .align(Alignment.BottomStart)
-            .padding(16.dp)
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        // Carousel Card
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(220.dp)
+                .padding(horizontal = 16.dp)
+                .clickable { onMovieClick(movies[currentIndex]) },
+            shape = RoundedCornerShape(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         ) {
-          Text(
-            text = movies[currentIndex].title,
-            style = MaterialTheme.typography.titleLarge.copy(
-              color = primaryTextColor,
-              fontWeight = FontWeight.Bold,
-              fontSize = 20.sp
-            ),
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-          )
+            Box(modifier = Modifier.fillMaxSize()) {
+                // Movie Poster
+                movies[currentIndex].posterPath?.let { posterPath ->
+                    AsyncImage(
+                        model = "https://image.tmdb.org/t/p/w500$posterPath",
+                        contentDescription = movies[currentIndex].title,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                }
 
-          Spacer(modifier = Modifier.height(4.dp))
+                // Gradient Overlay (always dark to ensure text visibility)
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            Brush.verticalGradient(
+                                colors = listOf(
+                                    Color.Transparent,
+                                    Color.Black.copy(alpha = 0.7f),
+                                ),
+                                startY = 300f,
+                            ),
+                        ),
+                )
 
-          Row(
-            verticalAlignment = Alignment.CenterVertically
-          ) {
-            RatingBadge(
-              rating = movies[currentIndex].voteAverage,
-              showIcon = true
-            )
+                // Movie Info
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(16.dp),
+                ) {
+                    Text(
+                        text = movies[currentIndex].title,
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            color = primaryTextColor,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp,
+                        ),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
 
-            Spacer(modifier = Modifier.width(12.dp))
+                    Spacer(modifier = Modifier.height(4.dp))
 
-            Text(
-              text = movies[currentIndex].releaseDate.take(4),
-              style = MaterialTheme.typography.bodyMedium,
-              color = secondaryTextColor
-            )
-          }
-        }
-      }
-    }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        RatingBadge(
+                            rating = movies[currentIndex].voteAverage,
+                            showIcon = true,
+                        )
 
-    // Page Indicators
-    Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.width(12.dp))
 
-    Row(
-      horizontalArrangement = Arrangement.Center,
-      verticalAlignment = Alignment.CenterVertically
-    ) {
-      val displayCount = minOf(5, movies.size)
-      repeat(displayCount) { index ->
-        val isSelected = currentIndex % displayCount == index
-        val size by animateDpAsState(
-          targetValue = if (isSelected) 10.dp else 6.dp,
-          label = "indicator_size"
-        )
-
-        Box(
-          modifier = Modifier
-            .padding(horizontal = 4.dp)
-            .size(size)
-            .clip(CircleShape)
-            .background(
-              if (isSelected) indicatorActiveColor else indicatorInactiveColor
-            )
-            .clickable {
-              scope.launch {
-                currentIndex = index
-              }
+                        Text(
+                            text = movies[currentIndex].releaseDate.take(4),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = secondaryTextColor,
+                        )
+                    }
+                }
             }
-        )
-      }
+        }
+
+        // Page Indicators
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            val displayCount = minOf(5, movies.size)
+            repeat(displayCount) { index ->
+                val isSelected = currentIndex % displayCount == index
+                val size by animateDpAsState(
+                    targetValue = if (isSelected) 10.dp else 6.dp,
+                    label = "indicator_size",
+                )
+
+                Box(
+                    modifier = Modifier
+                        .padding(horizontal = 4.dp)
+                        .size(size)
+                        .clip(CircleShape)
+                        .background(
+                            if (isSelected) indicatorActiveColor else indicatorInactiveColor,
+                        )
+                        .clickable {
+                            scope.launch {
+                                currentIndex = index
+                            }
+                        },
+                )
+            }
+        }
     }
-  }
 }

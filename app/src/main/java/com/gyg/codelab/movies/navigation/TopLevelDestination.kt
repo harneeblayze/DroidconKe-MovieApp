@@ -19,27 +19,27 @@ import androidx.compose.ui.graphics.vector.ImageVector
  * @param titleText Text that is displayed on the top app bar.
  */
 enum class TopLevelDestination(
-  val selectedIcon: ImageVector,
-  val unselectedIcon: ImageVector,
-  val iconTextId: String,
-  val titleText: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
+    val iconTextId: String,
+    val titleText: String,
 ) {
-  HOME(
-    selectedIcon = Icons.Filled.Home,
-    unselectedIcon = Icons.Outlined.Home,
-    iconTextId = "Home",
-    titleText = "Movies",
-  ),
-  SEARCH(
-    selectedIcon = Icons.Filled.Search,
-    unselectedIcon = Icons.Outlined.Search,
-    iconTextId = "Search",
-    titleText = "Search",
-  ),
-  FAVORITES(
-    selectedIcon = Icons.Filled.Favorite,
-    unselectedIcon = Icons.Outlined.FavoriteBorder,
-    iconTextId = "Favorites",
-    titleText = "Favorites",
-  ),
+    HOME(
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Outlined.Home,
+        iconTextId = "Home",
+        titleText = "Movies",
+    ),
+    SEARCH(
+        selectedIcon = Icons.Filled.Search,
+        unselectedIcon = Icons.Outlined.Search,
+        iconTextId = "Search",
+        titleText = "Search",
+    ),
+    FAVORITES(
+        selectedIcon = Icons.Filled.Favorite,
+        unselectedIcon = Icons.Outlined.FavoriteBorder,
+        iconTextId = "Favorites",
+        titleText = "Favorites",
+    ),
 }

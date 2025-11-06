@@ -2,9 +2,7 @@ package com.gyg.codelab.movies.mvvm.starter.search
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.ui.screens.SearchScreen
 
 /**
  * TODO: Implement SearchRoute for the Search feature
@@ -26,11 +24,11 @@ import com.gyg.codelab.movies.ui.screens.SearchScreen
  */
 @Composable
 fun SearchRoute(
-  viewModel: SearchViewModel,
-  onMovieClick: (Movie) -> Unit,
+    viewModel: SearchViewModel,
+    onMovieClick: (Movie) -> Unit,
 ) {
-  // TODO: Collect searchResults and searchQuery from ViewModel
+    // TODO: Collect searchResults and searchQuery from ViewModel
 
-  // TODO: Pass state to SearchScreen component
-  // SearchScreen needs: query, searchResults, onQueryChange, onMovieClick, onToggleFavorite
+    // TODO: Pass state to SearchScreen component
+    // SearchScreen needs: query, searchResults, onQueryChange, onMovieClick, onToggleFavorite
 }

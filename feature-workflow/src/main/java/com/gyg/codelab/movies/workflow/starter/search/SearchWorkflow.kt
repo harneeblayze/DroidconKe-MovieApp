@@ -1,9 +1,5 @@
 package com.gyg.codelab.movies.workflow.starter.search
 
-import com.gyg.codelab.movies.domain.model.Movie
-import com.gyg.codelab.movies.domain.repository.FavoritesRepository
-import com.gyg.codelab.movies.domain.repository.SearchRepository
-
 /**
  * TODO: Implement SearchWorkflow - A StatefulWorkflow for search functionality
  *

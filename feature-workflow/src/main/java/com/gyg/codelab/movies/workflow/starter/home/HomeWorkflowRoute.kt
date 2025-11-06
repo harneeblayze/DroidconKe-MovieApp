@@ -20,19 +20,19 @@ import org.koin.androidx.compose.koinViewModel
  */
 @Composable
 fun HomeWorkflowRoute(
-  viewModel: HomeWorkflowViewModel = koinViewModel(),
-  onMovieClick: (Movie) -> Unit,
-  onSearchClick: () -> Unit = {},
+    viewModel: HomeWorkflowViewModel = koinViewModel(),
+    onMovieClick: (Movie) -> Unit,
+    onSearchClick: () -> Unit = {},
 ) {
-  val rendering by viewModel.homeRendering.collectAsStateWithLifecycle()
+    val rendering by viewModel.homeRendering.collectAsStateWithLifecycle()
 
-  LazyMoviesScreen(
-    movieSections = rendering.movies,
-    onMovieClick = onMovieClick,
-    onSearchClick = onSearchClick,
-    onToggleFavorite = rendering.onToggleFavourite,
-    onRetry = {
-      rendering.onRetryLoad()
-    }
-  )
+    LazyMoviesScreen(
+        movieSections = rendering.movies,
+        onMovieClick = onMovieClick,
+        onSearchClick = onSearchClick,
+        onToggleFavorite = rendering.onToggleFavourite,
+        onRetry = {
+            rendering.onRetryLoad()
+        },
+    )
 }

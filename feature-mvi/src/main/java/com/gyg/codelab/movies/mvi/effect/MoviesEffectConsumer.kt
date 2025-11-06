@@ -1,4 +1,4 @@
-package com.gyg.codelab.movies.mvi2.effect
+package com.gyg.codelab.movies.mvi.effect
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -13,28 +13,28 @@ import kotlinx.coroutines.launch
  * such as showing toasts, navigation, or other one-time events.
  */
 class MoviesEffectConsumer(
-  private val scope: CoroutineScope
+    private val scope: CoroutineScope,
 ) {
-  private val _effects = MutableSharedFlow<MoviesEffect>()
-  val effects: Flow<MoviesEffect> = _effects.asSharedFlow()
+    private val _effects = MutableSharedFlow<MoviesEffect>()
+    val effects: Flow<MoviesEffect> = _effects.asSharedFlow()
 
-  /**
-   * Emit an effect to be consumed by the UI
-   */
-  fun emit(effect: MoviesEffect) {
-    scope.launch {
-      _effects.emit(effect)
+    /**
+     * Emit an effect to be consumed by the UI
+     */
+    fun emit(effect: MoviesEffect) {
+        scope.launch {
+            _effects.emit(effect)
+        }
     }
-  }
 
-  /**
-   * Consume effects with a handler
-   */
-  fun consumeEffects(handler: suspend (MoviesEffect) -> Unit) {
-    scope.launch {
-      effects.collect { effect ->
-        handler(effect)
-      }
+    /**
+     * Consume effects with a handler
+     */
+    fun consumeEffects(handler: suspend (MoviesEffect) -> Unit) {
+        scope.launch {
+            effects.collect { effect ->
+                handler(effect)
+            }
+        }
     }
-  }
 }

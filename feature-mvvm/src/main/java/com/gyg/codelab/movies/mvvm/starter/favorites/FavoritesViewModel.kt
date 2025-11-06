@@ -27,19 +27,19 @@ import kotlinx.coroutines.flow.flowOf
  * Reference: feature-mvvm/src/main/java/com/gyg/codelab/movies/mvvm/favorites/FavoritesViewModel.kt
  */
 class FavoritesViewModel(
-  private val favoritesRepository: FavoritesRepository
+    private val favoritesRepository: FavoritesRepository,
 ) : ViewModel() {
 
-  // TODO: Expose favorite movies flow from repository
-  val favoriteMovies: Flow<List<Movie>> = flowOf(emptyList())
+    // TODO: Expose favorite movies flow from repository
+    val favoriteMovies: Flow<List<Movie>> = flowOf(emptyList())
 
-  /**
-   * TODO: Implement toggle favorite functionality
-   * What to do:
-   * - Launch a coroutine in viewModelScope
-   * - Call favoritesRepository.toggleFavorite()
-   */
-  fun toggleFavorite(movie: Movie) {
-    // TODO: Implement
-  }
+    /**
+     * TODO: Implement toggle favorite functionality
+     * What to do:
+     * - Launch a coroutine in viewModelScope
+     * - Call favoritesRepository.toggleFavorite()
+     */
+    fun toggleFavorite(movie: Movie) {
+        // TODO: Implement
+    }
 }

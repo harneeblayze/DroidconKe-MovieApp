@@ -42,19 +42,19 @@ import com.gyg.codelab.movies.ui.screens.SearchScreen
  */
 @Composable
 fun SearchWorkflowRoute(
-  viewModel: SearchWorkflowViewModel,
-  onMovieClick: (Movie) -> Unit,
+    viewModel: SearchWorkflowViewModel,
+    onMovieClick: (Movie) -> Unit,
 ) {
-  //TODO : collect only rendering here and clean up query and searchResults
-  val query by viewModel.query.collectAsStateWithLifecycle()
-  val searchResults by viewModel.searchResults.collectAsStateWithLifecycle()
+    // TODO : collect only rendering here and clean up query and searchResults
+    val query by viewModel.query.collectAsStateWithLifecycle()
+    val searchResults by viewModel.searchResults.collectAsStateWithLifecycle()
 
-  SearchScreen(
-    query = query,
-    searchResults = searchResults,
-    onQueryChange = { viewModel.performSearch(it) },
-    onMovieClick = onMovieClick,
-    onToggleFavorite = { //TODO: implement toggle in the workflow and call it here
-      }
-  )
+    SearchScreen(
+        query = query,
+        searchResults = searchResults,
+        onQueryChange = { viewModel.performSearch(it) },
+        onMovieClick = onMovieClick,
+        onToggleFavorite = { // TODO: implement toggle in the workflow and call it here
+        },
+    )
 }

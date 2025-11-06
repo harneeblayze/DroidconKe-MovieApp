@@ -7,12 +7,12 @@ import com.gyg.codelab.movies.data.repository.SearchRepositoryImpl
 import com.gyg.codelab.movies.domain.repository.FavoritesRepository
 import com.gyg.codelab.movies.domain.repository.MoviesRepository
 import com.gyg.codelab.movies.domain.repository.SearchRepository
-import com.gyg.codelab.movies.mvi2.favorites.favoritesMviModule
-import com.gyg.codelab.movies.mvi2.home.homeMviModule
-import com.gyg.codelab.movies.mvi2.search.searchMviModule
-import com.gyg.codelab.movies.mvvm.favorites.FavoritesViewModel
-import com.gyg.codelab.movies.mvvm.home.HomeViewModel
-import com.gyg.codelab.movies.mvvm.search.SearchViewModel
+import com.gyg.codelab.movies.mvi.starter.favorites.favoritesStarterMviModule
+import com.gyg.codelab.movies.mvi.starter.home.homeStarterMviModule
+import com.gyg.codelab.movies.mvi.starter.search.searchStarterMviModule
+import com.gyg.codelab.movies.mvvm.starter.favorites.FavoritesViewModel
+import com.gyg.codelab.movies.mvvm.starter.home.HomeViewModel
+import com.gyg.codelab.movies.mvvm.starter.search.SearchViewModel
 import com.gyg.codelab.movies.workflow.di.workflowModule
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
@@ -67,7 +67,7 @@ val appModule = module {
         MoviesRepositoryImpl(
             apiService = get(),
             apiKey = get(org.koin.core.qualifier.named("apiKey")),
-            ioDispatcher = get(org.koin.core.qualifier.named("ioDispatcher"))
+            ioDispatcher = get(org.koin.core.qualifier.named("ioDispatcher")),
         )
     }
 
@@ -75,7 +75,7 @@ val appModule = module {
         SearchRepositoryImpl(
             apiService = get(),
             apiKey = get(org.koin.core.qualifier.named("apiKey")),
-            ioDispatcher = get(org.koin.core.qualifier.named("ioDispatcher"))
+            ioDispatcher = get(org.koin.core.qualifier.named("ioDispatcher")),
         )
     }
 
@@ -88,20 +88,20 @@ val appModule = module {
     viewModel {
         HomeViewModel(
             moviesRepository = get(),
-            favoritesRepository = get()
+            favoritesRepository = get(),
         )
     }
     viewModel {
         SearchViewModel(
             searchRepository = get(),
-            favoritesRepository = get()
+            favoritesRepository = get(),
         )
     }
     viewModel { FavoritesViewModel(favoritesRepository = get()) }
 
-    //Include MVI module
-    includes(homeMviModule)
-    includes(searchMviModule)
-    includes(favoritesMviModule)
-  includes(workflowModule)
+    // Include MVI module
+    includes(homeStarterMviModule)
+    includes(searchStarterMviModule)
+    includes(favoritesStarterMviModule)
+    includes(workflowModule)
 }

@@ -1,4 +1,4 @@
-package com.gyg.codelab.movies.mvi2.state_manager
+package com.gyg.codelab.movies.mvi.state_manager
 
 /**
  * Marker interface for side effects.

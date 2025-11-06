@@ -319,7 +319,7 @@ Your implementation is complete when:
 ## 🔗 Additional Resources
 
 - Full solution: `feature-mvi/src/main/java/com/gyg/codelab/movies/mvi/` (without `starter/`)
-- StateManager: `feature-mvi/src/main/java/com/gyg/codelab/movies/mvi2/state_manager/`
+- StateManager: `feature-mvi/src/main/java/com/gyg/codelab/movies/mvi/state_manager/`
 - UI components: `ui-common/src/main/java/com/gyg/codelab/movies/ui/screens/`
 
 Good luck! 🚀

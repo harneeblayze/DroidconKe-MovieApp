@@ -1,8 +1,8 @@
-package com.gyg.codelab.movies.mvi2.state_manager
+package com.gyg.codelab.movies.mvi.state_manager
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gyg.codelab.movies.mvi2.transformer.StateTransformer
+import com.gyg.codelab.movies.mvi.transformer.StateTransformer
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -18,33 +18,33 @@ import kotlinx.coroutines.flow.stateIn
  * @param View The transformed UI View state type
  */
 abstract class MviViewModel<S : State, E : Event, out View : Any>(
-  private val stateManager: StateManager<S, E>,
-  private val stateTransformer: StateTransformer<S, View>,
+    private val stateManager: StateManager<S, E>,
+    private val stateTransformer: StateTransformer<S, View>,
 ) : ViewModel() {
 
-  val viewState: StateFlow<View> by lazy {
-    createViewStateFlow()
-      .stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Lazily,
-        initialValue = stateTransformer.transform(stateManager.getState().value),
-      )
-  }
+    val viewState: StateFlow<View> by lazy {
+        createViewStateFlow()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.Lazily,
+                initialValue = stateTransformer.transform(stateManager.getState().value),
+            )
+    }
 
-  protected open fun onStateStarted() {}
+    protected open fun onStateStarted() {}
 
-  private fun createViewStateFlow(): Flow<View> =
-    stateManager.getState()
-      .map { stateTransformer.transform(it) }
-      .onStart {
-        stateManager.startProcessingEvents()
-        onStateStarted()
-      }
+    private fun createViewStateFlow(): Flow<View> =
+        stateManager.getState()
+            .map { stateTransformer.transform(it) }
+            .onStart {
+                stateManager.startProcessingEvents()
+                onStateStarted()
+            }
 
-  /**
-   * Post an event to be processed by reducers
-   */
-  protected fun postEvent(event: E) {
-    stateManager.publishEvent(event)
-  }
+    /**
+     * Post an event to be processed by reducers
+     */
+    protected fun postEvent(event: E) {
+        stateManager.publishEvent(event)
+    }
 }
