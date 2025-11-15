@@ -995,13 +995,19 @@ PROHIBITED USES:
 
 Any use of this code must include clear attribution to the original authors and this license notice.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+DISCLAIMER:
+This software is provided for EDUCATIONAL PURPOSES ONLY. By using this code, you acknowledge
+and agree that:
+
+1. The software is provided "AS IS" for learning and educational use only
+2. It is NOT intended for commercial use or production environments
+3. No warranty of any kind is provided, express or implied
+4. The authors are not liable for any damages, claims, or losses arising from educational
+   or any unauthorized use of this software
+5. ANY USE OUTSIDE THE PERMITTED EDUCATIONAL SCOPE IS STRICTLY PROHIBITED, CONSTITUTES A
+   VIOLATION OF THIS LICENSE, AND MAY RESULT IN LEGAL ACTION. Such unauthorized use is at
+   your own risk and subjects you to potential liability for copyright infringement and
+   breach of license terms.
 
 For permissions beyond the scope of this license, please contact the project maintainers.
 ```
