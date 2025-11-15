@@ -977,19 +977,23 @@ sdk.dir=/home/username/Android/Sdk
 This project is for educational purposes as part of the DroidconKE codelab.
 
 ```
-MIT License
+Educational Use License
 
-Copyright (c) 2024 DroidconKE
+Copyright (c) 2025 DroidconKE
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+PERMITTED USES:
+- Study and learn from the code
+- Modify and experiment with the code for personal learning
+- Use the code as a reference for educational purposes
+- Share the code in educational contexts (classrooms, workshops, tutorials) with proper attribution
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+PROHIBITED USES:
+- Commercial use of any kind
+- Redistribution or republication without explicit written permission
+- Use in production applications or commercial products
+- Claiming authorship or removing copyright notices
+
+Any use of this code must include clear attribution to the original authors and this license notice.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -998,6 +1002,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+For permissions beyond the scope of this license, please contact the project maintainers.
 ```
 
 ## 🙏 Acknowledgments
