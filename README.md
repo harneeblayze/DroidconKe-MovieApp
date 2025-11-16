@@ -1045,8 +1045,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - **Issues**: [GitHub Issues](https://github.com/your-username/DroidconKeMovieApp/issues)
 - **Discussions
   **: [GitHub Discussions](https://github.com/your-username/DroidconKeMovieApp/discussions)
-- **Email**: droidconke@example.com
-- **Twitter**: [@DroidConKE](https://twitter.com/droidconke)
+- **Email**: harneeblayze@gmail.com
+- **Twitter**: [@harney_official](https://twitter.com/harney_official)
 
 ## ⭐ Star History
 
